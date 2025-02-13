@@ -35,7 +35,7 @@ export const maxBullets = 10; // Встановлюємо максимальну
 
 // Параметри астероїдів
 const asteroidData = { spawnedAsteroids: 0 };
-const totalAsteroids = 1;
+const totalAsteroids = 10;
 
 
 
@@ -96,8 +96,4 @@ export function continueGame(app) {
    
         
        manageBossBullets(app, spaceship, boss, bossBullets);
-
-        
-
-
 }
