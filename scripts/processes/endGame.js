@@ -18,7 +18,7 @@ export const endGame = (app, message, color, isBossLevel = false) => {
 
     app.stage.addChild(endText);
 
-    // app.ticker.stop(); 
+    app.ticker.stop(); 
     setGamePaused(true); // Встановлюємо гру на паузу
 
     if (message === "YOU WIN"){
