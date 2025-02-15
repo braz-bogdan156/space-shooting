@@ -4,7 +4,7 @@ import { manageAsteroids } from './processes/manageAsteroids.js';
 import { startGameTimer } from './processes/startGameTimer.js';
 import { endGame } from './processes/endGame.js';
 import { createStartButton } from './objects/startButton.js';
-
+import {getGamePaused, setGamePaused} from './processes/gameState.js';
 import {manageBossBullets} from './processes/manageBossBullets.js';
 import { createBoss } from './objects/boss.js';
 
@@ -27,8 +27,7 @@ background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
 
-// Таймер гри та змінна для контролю паузи
-export let isGamePaused = true;
+
 
 export const maxBullets = 10; // Встановлюємо максимальну кількість куль
 
@@ -46,11 +45,12 @@ app.stage.addChild(startButton);
 
 // === ЛОГІКА ГРИ (Оновлюється лише після натискання кнопки) ===
 export function startGame() {
-    if (!isGamePaused) return; // Якщо гра вже йде, нічого не робити
+   
+    if (!getGamePaused()) return; // Якщо гра вже йде, нічого не робити
 
-    isGamePaused = false; // Знімаємо паузу
+    setGamePaused(false); // Знімаємо паузу
     
-
+    
     // Створюємо корабель
     const spaceship = createSpaceship(app, maxBullets);
 

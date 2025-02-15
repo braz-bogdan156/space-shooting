@@ -2,7 +2,8 @@
 // import {initiateBossLevel} from './initiateBossLevel.js'
 import {createStartButton} from '../objects/startButton.js';
 import {restartGame} from './restartGame.js';
-import {addNextLevelButton} from './addNextLevelButton.js'
+import {addNextLevelButton} from './addNextLevelButton.js';
+import { setGamePaused } from '../processes/gameState.js'; // імпорт функції для скидання
 
 export const endGame = (app, message, color, isBossLevel = false) => {
     const endText = new PIXI.Text(message, {
@@ -17,7 +18,8 @@ export const endGame = (app, message, color, isBossLevel = false) => {
 
     app.stage.addChild(endText);
 
-    app.ticker.stop(); // Зупиняємо оновлення сцени
+    // app.ticker.stop(); 
+    setGamePaused(true); // Встановлюємо гру на паузу
 
     if (message === "YOU WIN"){
     if(isBossLevel){
