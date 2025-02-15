@@ -44,12 +44,19 @@ export const startButton = createStartButton(app, startGame);
 app.stage.addChild(startButton);
 
 // === ЛОГІКА ГРИ (Оновлюється лише після натискання кнопки) ===
-export function startGame() {
+export function startGame(app) {
    
     if (!getGamePaused()) return; // Якщо гра вже йде, нічого не робити
 
     setGamePaused(false); // Знімаємо паузу
-    
+    app.stage.removeChildren(); // Очищаємо сцену перед перезапуском
+
+    // Додаємо фон заново
+    const backgroundTexture = PIXI.Texture.from('assets/images/stairs.png');
+    const background = new PIXI.Sprite(backgroundTexture);
+    background.width = app.screen.width;
+    background.height = app.screen.height;
+    app.stage.addChild(background);
     
     // Створюємо корабель
     const spaceship = createSpaceship(app, maxBullets);
@@ -68,7 +75,7 @@ export function startGame() {
         (message, color) => endGame(app, message, color), asteroidData, totalAsteroids);
         // === Головний цикл гри (оновлюється тільки якщо гра активна) ===
         
-        
+       
 
 }
 

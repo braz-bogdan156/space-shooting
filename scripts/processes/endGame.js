@@ -1,9 +1,8 @@
 
-// import {initiateBossLevel} from './initiateBossLevel.js'
-import {createStartButton} from '../objects/startButton.js';
-import {restartGame} from './restartGame.js';
-import {addNextLevelButton} from './addNextLevelButton.js';
-import { setGamePaused } from '../processes/gameState.js'; // імпорт функції для скидання
+import { createStartButton } from '../objects/startButton.js';
+import { startGame } from '../game.js';
+import { addNextLevelButton } from './addNextLevelButton.js';
+import { setGamePaused } from './gameState.js';
 
 export const endGame = (app, message, color, isBossLevel = false) => {
     const endText = new PIXI.Text(message, {
@@ -18,21 +17,23 @@ export const endGame = (app, message, color, isBossLevel = false) => {
 
     app.stage.addChild(endText);
 
-    app.ticker.stop(); 
-    setGamePaused(true); // Встановлюємо гру на паузу
+    app.ticker.stop(); // Зупиняємо оновлення гри
+    setGamePaused(true); // Встановлюємо стан паузи
 
-    if (message === "YOU WIN"){
-    if(isBossLevel){
-        const restartButton = createStartButton(app, () => {
-            restartGame(app)
-        });
-        restartButton.y = endText.y + endText.height + 20;
-        app.stage.addChild(restartButton);
-        
+    if (message === "YOU WIN") {
+        if (isBossLevel) {
+           
+            const restartButton = createStartButton(app);
+            
+            app.stage.addChild(restartButton);
+            restartButton.on('pointerdown', () => {
+                app.stage.removeChildren(); // Очищаємо сцену
+                app.ticker.start(); // Відновлюємо оновлення
+                startGame(app);
+            });
+            
+        } else {
+            addNextLevelButton(app, endText, false);
+        }
     }
-    else {
-         // Якщо це не бос, додаємо кнопку наступного рівня
-         addNextLevelButton(app, endText, false);
-    }
-}
 };

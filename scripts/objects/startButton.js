@@ -32,7 +32,10 @@ export function createStartButton(app) {
     });
 
     // Обробник натискання
-    startButton.on('pointerdown', startGame);
+    startButton.on('pointerdown', () => 
+        {startGame(app)
+
+        });
 
     return startButton;
 }
