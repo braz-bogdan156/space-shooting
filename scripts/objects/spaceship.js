@@ -15,6 +15,7 @@ export const createSpaceship = (app, maxBullets) => {
     let canShoot = true;
     let shotsFired = 0;
     const keys = {}; // Об'єкт для відстеження стану клавіш
+    
 
     const BulletCounter = createBulletCounter(app, maxBullets);
 

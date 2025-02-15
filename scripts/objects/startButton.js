@@ -1,5 +1,6 @@
+import {startGame} from '../game.js';
 // Функція створення кнопки
-export function createStartButton(app, onClick) {
+export function createStartButton(app) {
     const startButton = new PIXI.Graphics();
     startButton.beginFill(0x0000FF); // Синій фон кнопки
     startButton.drawRoundedRect(0, 0, 250, 70, 20);
@@ -31,7 +32,7 @@ export function createStartButton(app, onClick) {
     });
 
     // Обробник натискання
-    startButton.on('pointerdown', onClick);
+    startButton.on('pointerdown', startGame);
 
     return startButton;
 }

@@ -56,7 +56,7 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
 
                 if (bossHP === 0) {
                     clearInterval(spawnIntervalBossBullets);
-                    endGame(app, "YOU WIN", "green");
+                    endGame(app, "YOU WIN", "green", true);
                     return;
                 }
                 continue; // Пропускаємо інші перевірки, якщо вже є влучання по босу

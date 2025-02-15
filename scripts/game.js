@@ -28,14 +28,14 @@ background.height = app.screen.height;
 app.stage.addChild(background);
 
 // Таймер гри та змінна для контролю паузи
-let isGamePaused = true;
+export let isGamePaused = true;
 
 export const maxBullets = 10; // Встановлюємо максимальну кількість куль
 
 
 // Параметри астероїдів
 const asteroidData = { spawnedAsteroids: 0 };
-const totalAsteroids = 10;
+const totalAsteroids = 2;
 
 
 
@@ -45,7 +45,7 @@ export const startButton = createStartButton(app, startGame);
 app.stage.addChild(startButton);
 
 // === ЛОГІКА ГРИ (Оновлюється лише після натискання кнопки) ===
-function startGame() {
+export function startGame() {
     if (!isGamePaused) return; // Якщо гра вже йде, нічого не робити
 
     isGamePaused = false; // Знімаємо паузу

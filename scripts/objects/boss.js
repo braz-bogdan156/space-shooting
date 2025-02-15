@@ -7,7 +7,7 @@ export function createBoss(app) {
 
 
     app.ticker.add(() => {
-        boss.x += (Math.random() > 0.5 ? 1 : -1) * 20;
+        boss.x += (Math.random() > 0.5 ? 1 : -1) * 5;
         if (boss.x < 0) boss.x = 0;
         if (boss.x > app.screen.width - boss.width) boss.x = app.screen.width - boss.width;
     });

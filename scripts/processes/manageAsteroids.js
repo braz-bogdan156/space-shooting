@@ -40,7 +40,7 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData
            
 
             if (asteroids.length === 0 && spaceship.bullets.length === 0 && asteroidData.spawnedAsteroids >= totalAsteroids) {
-                endGame("YOU WIN", "green");
+                endGame("YOU WIN", "green", false);
 
                 return;
             }
