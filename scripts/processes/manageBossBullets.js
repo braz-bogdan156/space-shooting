@@ -2,6 +2,7 @@ import { hitTestRectangle } from './hitTestRectangle.js';
 import { spawnbossBullet } from './spawnbossBullet.js';
 import { endGame } from './endGame.js';
 
+
 export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
     let bossHP = 4;
     const bossHPBar = new PIXI.Text(`Boss HP: ${bossHP}`, {
@@ -46,6 +47,12 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
                 spaceship.bullets.splice(j, 1);
                 --bossHP;
                 bossHPBar.text = `Boss HP: ${bossHP}`;
+
+                // if(spaceship.bullets.length === 0 && bossHP !== 0){
+                //     clearInterval(spawnIntervalBossBullets);
+                //     endGame(app, "YOU LOSE", "red");
+                //     return;
+                // }
 
                 if (bossHP === 0) {
                     clearInterval(spawnIntervalBossBullets);

@@ -70,7 +70,7 @@ export const createSpaceship = (app, maxBullets) => {
         for (let i = bullets.length - 1; i >= 0; i--) {
             bullets[i].y -= 5; // Швидкість кулі
 
-            // Видаляємо кулю, якщо вона виходить за межі екрану
+           
            
         }
 

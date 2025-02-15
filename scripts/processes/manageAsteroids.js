@@ -1,7 +1,7 @@
-import {hitTestRectangle} from './hitTestRectangle.js';
+import { hitTestRectangle } from './hitTestRectangle.js';
 
 export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData, totalAsteroids) => {
- 
+
     app.ticker.add(() => {
         for (let i = asteroids.length - 1; i >= 0; i--) {
             if (!asteroids[i]) continue; // Перевірка на наявність астероїда
@@ -12,7 +12,7 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData
             if (asteroids[i].y > app.screen.height) {
                 app.stage.removeChild(asteroids[i]);
                 asteroids.splice(i, 1);
-                
+
                 endGame("YOU LOSE", "red");
                 return;
             }
@@ -36,15 +36,12 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData
                 endGame("YOU LOSE", "red");
                 return; // Завершуємо гру
             }
-            if (spaceship.bullets.length === totalAsteroids && (asteroids.length !== totalAsteroids || asteroidData.spawnedAsteroids < totalAsteroids)) {
-                endGame("YOU LOSE", "red");
-                return;
-            }
-            
+          
+           
 
             if (asteroids.length === 0 && spaceship.bullets.length === 0 && asteroidData.spawnedAsteroids >= totalAsteroids) {
                 endGame("YOU WIN", "green");
-                
+
                 return;
             }
         }

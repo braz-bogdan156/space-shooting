@@ -1,7 +1,4 @@
 
-
-
-
 export const startGameTimer = (app, duration) => {
     let timeLeft = duration;
 
