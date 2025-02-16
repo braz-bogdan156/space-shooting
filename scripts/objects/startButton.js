@@ -1,4 +1,4 @@
-import {startGame} from '../processes/startGame.js';
+import { restartGame } from '../processes/restartGame.js';
 // Функція створення кнопки
 export function createStartButton(app) {
     const startButton = new PIXI.Graphics();
@@ -33,7 +33,7 @@ export function createStartButton(app) {
 
     // Обробник натискання
     startButton.on('pointerdown', () => 
-        {startGame(app)
+        {restartGame(app);
 
         });
 

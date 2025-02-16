@@ -1,12 +1,4 @@
-import { createSpaceship } from './objects/spaceship.js';
-import { createAsteroids } from './objects/asteroid.js';
-import { manageAsteroids } from './processes/manageAsteroids.js';
-import { startGameTimer } from './processes/startGameTimer.js';
-import { endGame } from './processes/endGame.js';
 import { createStartButton } from './objects/startButton.js';
-import {getGamePaused, setGamePaused} from './processes/gameState.js';
-import {manageBossBullets} from './processes/manageBossBullets.js';
-import { createBoss } from './objects/boss.js';
 import {startGame} from './processes/startGame.js';
 
 
