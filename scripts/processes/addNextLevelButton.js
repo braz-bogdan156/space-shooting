@@ -1,4 +1,4 @@
-import {continueGame} from '../game.js';
+import {continueGame} from './continueGame.js';
 
 // Функція створення кнопки "Next Level"
 export function addNextLevelButton(app, endText) {

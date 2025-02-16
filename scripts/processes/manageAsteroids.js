@@ -1,5 +1,6 @@
 import { hitTestRectangle } from './hitTestRectangle.js';
 
+
 export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData, totalAsteroids) => {
 
     app.ticker.add(() => {

@@ -1,4 +1,4 @@
-import {startGame} from '../game.js';
+import {startGame} from '../processes/startGame.js';
 // Функція створення кнопки
 export function createStartButton(app) {
     const startButton = new PIXI.Graphics();

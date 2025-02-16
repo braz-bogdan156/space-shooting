@@ -1,6 +1,6 @@
 
 import { createStartButton } from '../objects/startButton.js';
-import { startGame } from '../game.js';
+import {startGame} from './startGame.js';
 import { addNextLevelButton } from './addNextLevelButton.js';
 import { setGamePaused } from './gameState.js';
 
@@ -20,6 +20,10 @@ export const endGame = (app, message, color, isBossLevel = false) => {
     app.ticker.stop(); // Зупиняємо оновлення гри
     setGamePaused(true); // Встановлюємо стан паузи
 
+    
+
+    
+
     if (message === "YOU WIN") {
         if (isBossLevel) {
            
@@ -28,6 +32,7 @@ export const endGame = (app, message, color, isBossLevel = false) => {
             app.stage.addChild(restartButton);
             restartButton.on('pointerdown', () => {
                 app.stage.removeChildren(); // Очищаємо сцену
+                
                 app.ticker.start(); // Відновлюємо оновлення
                 startGame(app);
             });
