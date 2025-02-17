@@ -3,9 +3,20 @@ import {createBoss} from '../objects/boss.js';
 import {startGameTimer} from './startGameTimer.js';
 import {endGame} from './endGame.js';
 import { manageBossBullets } from './manageBossBullets.js';
-import { maxBullets } from '../game.js';
+import { maxBullets, bulletData } from '../game.js';
 
 export function continueGame(app) {
+    
+     // Очищення сцени
+     app.stage.removeChildren();
+
+     // Очищення всіх подій у ticker
+     app.ticker.stop();
+     app.ticker.remove(() => {});
+     app.ticker.start();
+ 
+     // Скидання даних про кулі
+     bulletData.shotsFired = 0;
    
     const backgroundTexture = PIXI.Texture.from('assets/images/stairs.png');
     const background = new PIXI.Sprite(backgroundTexture);

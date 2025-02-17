@@ -22,7 +22,8 @@ app.stage.addChild(background);
 // Параметри астероїдів
 export const asteroidData = { spawnedAsteroids: 0 };
 export const totalAsteroids = 2;
-export const maxBullets = 10; // Встановлюємо максимальну кількість куль
+export const bulletData = { shotsFired : 0 };
+export const maxBullets = 100; // Встановлюємо максимальну кількість куль
 
  
 
