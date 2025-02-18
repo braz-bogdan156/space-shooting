@@ -1,20 +1,15 @@
 import {createBulletCounter} from './bulletCounter.js';
 import {bulletData, maxBullets, canShoot} from '../game.js';
-
+import {createSpaceshipBullet} from '../objects/createSpaceshipBullet.js';
 export function shootShip(app, spaceship) {
     
     const BulletCounter = createBulletCounter(app, maxBullets);
         if (canShoot && bulletData.shotsFired < maxBullets) {
-            const bullet = new PIXI.Graphics();
-            bullet.beginFill(0xFFFFFF);
-            bullet.drawCircle(0, 0, 5);
-            bullet.endFill();
 
-            bullet.x = spaceship.x + spaceship.width / 2 - bullet.width / 2;
-            bullet.y = spaceship.y - bullet.height;
-            app.stage.addChild(bullet);
+            const spaceshipBullet = createSpaceshipBullet(spaceship);
+            
 
-            spaceship.bullets.push(bullet);
+            spaceship.bullets.push(spaceshipBullet);
             bulletData.shotsFired++;
             BulletCounter(bulletData.shotsFired);
 

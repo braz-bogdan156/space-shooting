@@ -1,5 +1,5 @@
 import { hitTestRectangle } from './hitTestRectangle.js';
-import { spawnbossBullet } from './spawnbossBullet.js';
+import { spawnbossBullet } from '../objects/spawnbossBullet.js';
 import { endGame } from './endGame.js';
 
 

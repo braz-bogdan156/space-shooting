@@ -1,5 +1,6 @@
 import {createSpaceship} from '../objects/spaceship.js';
-import {setGamePaused, getGamePaused} from './gameState.js';
+import {getGamePaused} from '../processes/getGamePaused.js';
+import {setGamePaused} from '../processes/setGamePaused.js';
 import {createAsteroids} from '../objects/asteroid.js';
 import {startGameTimer} from './startGameTimer.js';
 import { manageAsteroids } from './manageAsteroids.js';

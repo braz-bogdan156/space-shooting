@@ -19,6 +19,7 @@ background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
 
+export const spaceship = null;
 // Параметри астероїдів
 export const asteroidData = { spawnedAsteroids: 0 };
 export const totalAsteroids = 2;
@@ -29,7 +30,7 @@ export const shootingState = {
     shooting : false
 };
 export let canShoot = true; 
-
+export let isGamePaused = true;
 
 
 

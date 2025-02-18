@@ -1,8 +1,7 @@
-import {setGamePaused} from './gameState.js';
+import { setGamePaused } from './setGamePaused.js';
 import {startGame} from './startGame.js';
 import {asteroidData, bulletData} from '../game.js';
-import {handleKeyDown} from '../processes/handleKeyDown.js';
-import {handleKeyUp} from '../processes/handleKeyUp.js';
+
  
 
 export const restartGame = (app) => {
