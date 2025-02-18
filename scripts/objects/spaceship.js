@@ -1,5 +1,5 @@
 
-import {  keys, bullets } from '../game.js';
+import {  keys} from '../game.js';
 import { app } from '../game.js';
 import {shootShip} from '../processes/shootShip.js';
 
@@ -12,7 +12,7 @@ export const createSpaceship = () => {
     spaceship.y = app.screen.height - 250;
     app.stage.addChild(spaceship);
 
-    
+    spaceship.bullets = [];
     
     app.ticker.add(() => {
         if (keys["ArrowLeft"]) {
@@ -22,11 +22,11 @@ export const createSpaceship = () => {
             spaceship.x = Math.min(spaceship.x + 10, app.screen.width - spaceship.width);
         }
 
-        for (let i = bullets.length - 1; i >= 0; i--) {
-            bullets[i].y -= 5;
-            if (bullets[i].y < 0) {
-                app.stage.removeChild(bullets[i]);
-                bullets.splice(i, 1);
+        for (let i = spaceship.bullets.length - 1; i >= 0; i--) {
+            spaceship.bullets[i].y -= 5;
+            if (spaceship.bullets[i].y < 0) {
+                app.stage.removeChild(spaceship.bullets[i]);
+                spaceship.bullets.splice(i, 1);
             }
         }
     });

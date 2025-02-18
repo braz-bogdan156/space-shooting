@@ -29,7 +29,7 @@ export const shootingState = {
     shooting : false
 };
 export let canShoot = true; 
-export const bullets = [];
+
 
 
 

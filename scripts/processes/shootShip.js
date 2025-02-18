@@ -1,5 +1,5 @@
 import {createBulletCounter} from './bulletCounter.js';
-import {bulletData, maxBullets, bullets, canShoot} from '../game.js';
+import {bulletData, maxBullets, canShoot} from '../game.js';
 
 export function shootShip(app, spaceship) {
     
@@ -14,7 +14,7 @@ export function shootShip(app, spaceship) {
             bullet.y = spaceship.y - bullet.height;
             app.stage.addChild(bullet);
 
-            bullets.push(bullet);
+            spaceship.bullets.push(bullet);
             bulletData.shotsFired++;
             BulletCounter(bulletData.shotsFired);
 
