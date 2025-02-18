@@ -4,7 +4,9 @@ import {createAsteroids} from '../objects/asteroid.js';
 import {startGameTimer} from './startGameTimer.js';
 import { manageAsteroids } from './manageAsteroids.js';
 import { endGame } from './endGame.js';
-import { maxBullets, totalAsteroids, asteroidData} from '../game.js'
+import { maxBullets, totalAsteroids, asteroidData} from '../game.js';
+import {handleKeyDown} from './handleKeyDown.js';
+import {handleKeyUp} from './handleKeyUp.js';
 
 // === ЛОГІКА ГРИ (Оновлюється лише після натискання кнопки) ===
 export function startGame(app) {
@@ -21,6 +23,9 @@ export function startGame(app) {
     background.width = app.screen.width;
     background.height = app.screen.height;
     app.stage.addChild(background);
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
     
     // Створюємо корабель
     const spaceship = createSpaceship(app, maxBullets);

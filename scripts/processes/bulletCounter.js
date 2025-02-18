@@ -1,6 +1,7 @@
 import { updateBulletCounter } from "./updateBulletCounter.js";
+import { app, maxBullets } from "../game.js";
 // Функція для створення лічильника куль
-export const createBulletCounter = (app, maxBullets) => {
+export const createBulletCounter = () => {
     const bulletCounterText = new PIXI.Text(`Bullets: ${maxBullets} / 10`, {
         fontFamily: "Arial",
         fontSize: 32,

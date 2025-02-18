@@ -24,9 +24,12 @@ export const asteroidData = { spawnedAsteroids: 0 };
 export const totalAsteroids = 2;
 export const bulletData = { shotsFired : 0 };
 export const maxBullets = 100; // Встановлюємо максимальну кількість куль
-
- 
-
+export const  keys = {};
+export const shootingState = {
+    shooting : false
+};
+export let canShoot = true; 
+export const bullets = [];
 
 
 
