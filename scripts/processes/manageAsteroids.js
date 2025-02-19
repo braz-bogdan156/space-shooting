@@ -4,15 +4,15 @@ import {gameState} from '../game.js';
 export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
 
     app.ticker.add(() => {
-        for (let i = asteroids.length - 1; i >= 0; i--) {
-            if (!asteroids[i]) continue; // Перевірка на наявність астероїда
+        for (let i = gameState.asteroids.length - 1; i >= 0; i--) {
+            if (!gameState.asteroids[i]) continue; // Перевірка на наявність астероїда
 
-            asteroids[i].y += 1; // Рух астероїда вниз
+            gameState.asteroids[i].y += 1; // Рух астероїда вниз
 
             // Видаляємо астероїд, якщо він виходить за межі екрану
-            if (asteroids[i].y > app.screen.height) {
-                app.stage.removeChild(asteroids[i]);
-                asteroids.splice(i, 1);
+            if (gameState.asteroids[i].y > app.screen.height) {
+                app.stage.removeChild(gameState.asteroids[i]);
+                gameState.asteroids.splice(i, 1);
 
                 endGame("YOU LOSE", "red");
                 return;
@@ -21,11 +21,12 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
 
             // Перевірка зіткнення астероїда з кулями корабля
             for (let j = gameState.bullets.length - 1; j >= 0; j--) {
-                console.log(" Перевіряємо зіткнення:", gameState.bullets[j], asteroids[i]);
-                if (hitTestRectangle(gameState.bullets[j], asteroids[i])) {
-                    app.stage.removeChild(asteroids[i]);
+                if (!gameState.bullets[j]) continue; 
+                // console.log(" Перевіряємо зіткнення:", gameState.bullets[j], gameState.asteroids[i]);
+                if (hitTestRectangle(gameState.bullets[j], gameState.asteroids[i])) {
+                    app.stage.removeChild(gameState.asteroids[i]);
                     app.stage.removeChild(gameState.bullets[j]);
-                    asteroids.splice(i, 1);
+                    gameState.asteroids.splice(i, 1);
                     gameState.bullets.splice(j, 1);
 
                     break;
@@ -34,14 +35,14 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
             }
 
             // Перевірка зіткнення астероїда з кораблем
-            if (asteroids[i] && hitTestRectangle(asteroids[i], spaceship)) {
+            if (gameState.asteroids[i] && hitTestRectangle(gameState.asteroids[i], gameState.spaceship)) {
                 endGame("YOU LOSE", "red");
                 return; // Завершуємо гру
             }
           
            
 
-            if (asteroids.length === 0 && gameState.bullets.length === 0 && gameState.asteroidData.spawnedAsteroids >= gameState.totalAsteroids) {
+            if (gameState.asteroids.length === 0 && gameState.bullets.length === 0 && gameState.asteroidData.spawnedAsteroids >= gameState.totalAsteroids) {
                 endGame("YOU WIN", "green", false);
 
                 return;

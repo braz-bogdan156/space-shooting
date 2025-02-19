@@ -1,9 +1,6 @@
 // Функція для перевірки зіткнення
 export function hitTestRectangle(r1, r2) {
-    if (!r1 || !r2) {
-        console.error(" hitTestRectangle отримала `undefined` значення!", { r1, r2 });
-        return false;
-    }
+  
     const r1Bounds = r1.getBounds();
     const r2Bounds = r2.getBounds();
 

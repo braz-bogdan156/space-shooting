@@ -1,3 +1,5 @@
+import { gameState } from "../game.js";
+
 export const createAsteroids = (
   app,
   totalAsteroids = 10,
@@ -5,7 +7,7 @@ export const createAsteroids = (
   endGame,
   asteroidData
 ) => {
-  const asteroids = [];
+  gameState.asteroids = []; // Очищуємо перед створенням нових
   let currentSpeed = 1; // Початкова швидкість
 
   // Функція для створення одного астероїда
@@ -20,7 +22,7 @@ export const createAsteroids = (
     asteroid.x = Math.random() * (app.screen.width - asteroid.width);
     asteroid.y = -asteroid.height; // Початкова позиція (за межами екрану)
     app.stage.addChild(asteroid);
-    asteroids.push(asteroid);
+    gameState.asteroids.push(asteroid);
   };
 
   // Функція для створення групи астероїдів
@@ -48,10 +50,10 @@ export const createAsteroids = (
 
   // Додаємо логіку руху астероїдів у `manageAsteroids`
   app.ticker.add(() => {
-    asteroids.forEach((asteroid) => {
+    gameState.asteroids.forEach((asteroid) => {
       asteroid.y += currentSpeed;
     });
   });
 
-  return asteroids;
+  return gameState.asteroids;
 };

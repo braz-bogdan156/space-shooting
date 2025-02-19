@@ -23,6 +23,7 @@ export const createSpaceship = (app) => {
     })
 
     setSpaceship(spaceship);
+    
 };
 
 

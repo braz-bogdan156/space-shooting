@@ -26,6 +26,7 @@ isGamePaused : true,
 // Параметри астероїдів
 asteroidData : { spawnedAsteroids: 0 },
  totalAsteroids : 2,
+ asteroids: [],
  bulletData : { shotsFired : 0 },
   maxBullets : 100, // Встановлюємо максимальну кількість куль
    keys : {},
