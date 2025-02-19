@@ -22,7 +22,7 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
             // Перевірка зіткнення астероїда з кулями корабля
             for (let j = gameState.bullets.length - 1; j >= 0; j--) {
                 if (!gameState.bullets[j]) continue; 
-                // console.log(" Перевіряємо зіткнення:", gameState.bullets[j], gameState.asteroids[i]);
+                
                 if (hitTestRectangle(gameState.bullets[j], gameState.asteroids[i])) {
                     app.stage.removeChild(gameState.asteroids[i]);
                     app.stage.removeChild(gameState.bullets[j]);
@@ -42,7 +42,7 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
           
            
 
-            if (gameState.asteroids.length === 0 && gameState.bullets.length === 0 && gameState.asteroidData.spawnedAsteroids >= gameState.totalAsteroids) {
+            if (gameState.asteroids.length === 0 && gameState.asteroidData.spawnedAsteroids >= gameState.totalAsteroids) {
                 endGame("YOU WIN", "green", false);
 
                 return;
