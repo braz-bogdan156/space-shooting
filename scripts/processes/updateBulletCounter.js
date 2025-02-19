@@ -1,4 +1,6 @@
+import {gameState} from '../game.js';
+
 // Функція для оновлення лічильника
-export const updateBulletCounter = (bulletCounterText, maxBullets, shotsFired) => {
-    bulletCounterText.text = `Bullets: ${maxBullets - shotsFired} / 10`;
+export const updateBulletCounter = () => {
+    gameState.bulletCounterText.text = `Bullets: ${gameState.maxBullets - gameState.bulletData.shotsFired} / 10`;
 };

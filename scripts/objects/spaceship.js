@@ -1,5 +1,6 @@
 import {gameState} from '../game.js';
 import {setSpaceship} from '../processes/setSpaceship.js';
+import { spaceshipBullets } from './spaceshipBullets.js';
 
 export const createSpaceship = (app) => {
      const spaceship = new PIXI.Sprite(PIXI.Texture.from('assets/images/ship.png'));
@@ -23,7 +24,7 @@ export const createSpaceship = (app) => {
     })
 
     setSpaceship(spaceship);
-    
+    spaceshipBullets(spaceship);
 };
 
 

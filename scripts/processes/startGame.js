@@ -8,6 +8,7 @@ import { endGame } from './endGame.js';
 import { gameState} from '../game.js';
 import {handleKeyDown} from './handleKeyDown.js';
 import {handleKeyUp} from './handleKeyUp.js';
+import {createBulletCounter} from './bulletCounter.js';
 
 // === ЛОГІКА ГРИ (Оновлюється лише після натискання кнопки) ===
 export function startGame(app) {
@@ -27,7 +28,10 @@ export function startGame(app) {
 
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
-    
+
+    //створюємо лічильник пострілів
+    createBulletCounter(app);
+   
     // Створюємо корабель
     const spaceship = createSpaceship(app, gameState.maxBullets);
 
