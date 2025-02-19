@@ -1,8 +1,8 @@
 import { updateBulletCounter } from "./updateBulletCounter.js";
-import { app, maxBullets } from "../game.js";
+import { app, gameState } from "../game.js";
 // Функція для створення лічильника куль
 export const createBulletCounter = () => {
-    const bulletCounterText = new PIXI.Text(`Bullets: ${maxBullets} / 10`, {
+    const bulletCounterText = new PIXI.Text(`Bullets: ${gameState.maxBullets} / 10`, {
         fontFamily: "Arial",
         fontSize: 32,
         fill: "white",
@@ -14,5 +14,5 @@ export const createBulletCounter = () => {
 
     
 
-    return (shotsFired) => updateBulletCounter(bulletCounterText, maxBullets, shotsFired);
+    return (shotsFired) => updateBulletCounter(bulletCounterText, gameState.maxBullets, gameState.bulletData.shotsFired);
 };

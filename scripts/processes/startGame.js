@@ -5,7 +5,7 @@ import {createAsteroids} from '../objects/asteroid.js';
 import {startGameTimer} from './startGameTimer.js';
 import { manageAsteroids } from './manageAsteroids.js';
 import { endGame } from './endGame.js';
-import { maxBullets, totalAsteroids, asteroidData} from '../game.js';
+import { gameState} from '../game.js';
 import {handleKeyDown} from './handleKeyDown.js';
 import {handleKeyUp} from './handleKeyUp.js';
 
@@ -29,10 +29,10 @@ export function startGame(app) {
     window.addEventListener("keyup", handleKeyUp);
     
     // Створюємо корабель
-    const spaceship = createSpaceship(app, maxBullets);
+    const spaceship = createSpaceship(app, gameState.maxBullets);
 
     // Створення астероїдів
-    const asteroids = createAsteroids(app, totalAsteroids, 3000, (message, color) => endGame(app, message, color), asteroidData);
+    const asteroids = createAsteroids(app, gameState.totalAsteroids, 3000, (message, color) => endGame(app, message, color), gameState.asteroidData);
 
 
     // Запуск таймера гри
@@ -42,7 +42,7 @@ export function startGame(app) {
 
     // Анімація та обробка астероїдів тепер активна
     manageAsteroids(app, spaceship, asteroids,
-        (message, color) => endGame(app, message, color), asteroidData, totalAsteroids);
+        (message, color) => endGame(app, message, color));
         // === Головний цикл гри (оновлюється тільки якщо гра активна) ===
         
 }

@@ -3,7 +3,7 @@ import {createBoss} from '../objects/boss.js';
 import {startGameTimer} from './startGameTimer.js';
 import {endGame} from './endGame.js';
 import { manageBossBullets } from './manageBossBullets.js';
-import { maxBullets, bulletData } from '../game.js';
+import { gameState } from '../game.js';
 
 export function continueGame(app) {
     
@@ -16,7 +16,7 @@ export function continueGame(app) {
      app.ticker.start();
  
      // Скидання даних про кулі
-     bulletData.shotsFired = 0;
+     gameState.bulletData.shotsFired = 0;
    
     const backgroundTexture = PIXI.Texture.from('assets/images/stairs.png');
     const background = new PIXI.Sprite(backgroundTexture);
@@ -25,7 +25,7 @@ export function continueGame(app) {
     app.stage.addChild(background);
 
     
-    const spaceship = createSpaceship(app, maxBullets);
+    const spaceship = createSpaceship(app, gameState.maxBullets);
     const boss = createBoss(app);
     app.stage.addChild(boss);
     const bossBullets = [];

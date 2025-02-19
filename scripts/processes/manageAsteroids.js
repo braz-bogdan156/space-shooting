@@ -1,7 +1,7 @@
 import { hitTestRectangle } from './hitTestRectangle.js';
+import {gameState} from '../game.js';
 
-
-export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData, totalAsteroids) => {
+export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
 
     app.ticker.add(() => {
         for (let i = asteroids.length - 1; i >= 0; i--) {
@@ -20,12 +20,12 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData
 
 
             // Перевірка зіткнення астероїда з кулями корабля
-            for (let j = spaceship.bullets.length - 1; j >= 0; j--) {
-                if (hitTestRectangle(spaceship.bullets[j], asteroids[i])) {
+            for (let j = gameState.bullets.length - 1; j >= 0; j--) {
+                if (hitTestRectangle(gameState.bullets[j], asteroids[i])) {
                     app.stage.removeChild(asteroids[i]);
-                    app.stage.removeChild(spaceship.bullets[j]);
+                    app.stage.removeChild(gameState.bullets[j]);
                     asteroids.splice(i, 1);
-                    spaceship.bullets.splice(j, 1);
+                    gameState.bullets.splice(j, 1);
 
                     break;
                 }
@@ -40,7 +40,7 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData
           
            
 
-            if (asteroids.length === 0 && spaceship.bullets.length === 0 && asteroidData.spawnedAsteroids >= totalAsteroids) {
+            if (asteroids.length === 0 && gameState.bullets.length === 0 && gameState.asteroidData.spawnedAsteroids >= gameState.totalAsteroids) {
                 endGame("YOU WIN", "green", false);
 
                 return;

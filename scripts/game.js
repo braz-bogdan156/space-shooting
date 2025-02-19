@@ -21,6 +21,7 @@ app.stage.addChild(background);
 
  export const  gameState = {
  spaceship : null,
+ bullets : [],
 isGamePaused : true,
 // Параметри астероїдів
 asteroidData : { spawnedAsteroids: 0 },

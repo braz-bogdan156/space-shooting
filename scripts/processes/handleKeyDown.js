@@ -1,12 +1,12 @@
- import { keys, shootingState } from "../game.js";
+ import { gameState } from "../game.js";
 import { shootShip } from "./shootShip.js";
 
  
  export function handleKeyDown(e) {
-        keys[e.key] = true;
-        if (e.key === " " && !shootingState.shooting) {
+        gameState.keys[e.key] = true;
+        if (e.key === " " && !gameState.shootingState.shooting) {
             e.preventDefault();
-            shootingState.shooting = true;
+            gameState.shootingState.shooting = true;
             shootShip();
         }
     }

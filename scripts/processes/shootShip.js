@@ -1,17 +1,17 @@
 import {createBulletCounter} from './bulletCounter.js';
-import {bulletData, maxBullets, canShoot} from '../game.js';
+import {gameState} from '../game.js';
 import {createSpaceshipBullet} from '../objects/createSpaceshipBullet.js';
 export function shootShip(app, spaceship) {
     
-    const BulletCounter = createBulletCounter(app, maxBullets);
-        if (canShoot && bulletData.shotsFired < maxBullets) {
+    const BulletCounter = createBulletCounter(app, gameState.maxBullets);
+        if (gameState.canShoot && gameState.bulletData.shotsFired < gameState.maxBullets) {
 
-            const spaceshipBullet = createSpaceshipBullet(spaceship);
+            const spaceshipBullet = createSpaceshipBullet(gameState.spaceship);
             
 
             spaceship.bullets.push(spaceshipBullet);
-            bulletData.shotsFired++;
-            BulletCounter(bulletData.shotsFired);
+            gameState.bulletData.shotsFired++;
+            BulletCounter(gameState.bulletData.shotsFired);
 
             canShoot = false;
             setTimeout(() => {
