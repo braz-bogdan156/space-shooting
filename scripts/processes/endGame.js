@@ -2,7 +2,7 @@
 import { createStartButton } from '../objects/startButton.js';
 import { restartGame } from './restartGame.js';
 import { addNextLevelButton } from './addNextLevelButton.js';
-import { setGamePaused } from './gameState.js';
+import { setGamePaused } from './setGamePaused.js';
 
 export const endGame = (app, message, color, isBossLevel = false) => {
     const endText = new PIXI.Text(message, {
