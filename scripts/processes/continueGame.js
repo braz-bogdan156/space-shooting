@@ -7,16 +7,7 @@ import { gameState } from '../game.js';
 
 export function continueGame(app) {
     
-     // Очищення сцени
-     app.stage.removeChildren();
-
-     // Очищення всіх подій у ticker
-     app.ticker.stop();
-     app.ticker.remove(() => {});
-     app.ticker.start();
- 
-     // Скидання даних про кулі
-     gameState.bulletData.shotsFired = 0;
+     
    
     const backgroundTexture = PIXI.Texture.from('assets/images/stairs.png');
     const background = new PIXI.Sprite(backgroundTexture);

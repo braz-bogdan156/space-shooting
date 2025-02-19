@@ -1,7 +1,7 @@
 import { hitTestRectangle } from './hitTestRectangle.js';
 import { spawnbossBullet } from '../objects/spawnbossBullet.js';
 import { endGame } from './endGame.js';
-
+import { gameState } from '../game.js';
 
 export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
     let bossHP = 4;
@@ -31,20 +31,20 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
             }
 
             // Перевірка зіткнення з кораблем
-            if (hitTestRectangle(bossBullets[i], spaceship)) {
+            if (hitTestRectangle(bossBullets[i], gameState.spaceship)) {
                 app.stage.removeChild(bossBullets[i]);
                 endGame(app, "YOU LOSE", "red");
             }
         }
 
         // Рух і перевірка зіткнень куль корабля
-        for (let j = spaceship.bullets.length - 1; j >= 0; j--) {
-            let playerBullet = spaceship.bullets[j];
+        for (let j = gameState.bullets.length - 1; j >= 0; j--) {
+            let playerBullet = gameState.bullets[j];
 
             // Перевірка зіткнення з босом
             if (hitTestRectangle(playerBullet, boss)) {
                 app.stage.removeChild(playerBullet);
-                spaceship.bullets.splice(j, 1);
+                gameState.bullets.splice(j, 1);
                 --bossHP;
                 bossHPBar.text = `Boss HP: ${bossHP}`;
 
@@ -69,7 +69,7 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
                 if (hitTestRectangle(playerBullet, bossBullet)) {
                     app.stage.removeChild(playerBullet);
                     app.stage.removeChild(bossBullet);
-                    spaceship.bullets.splice(j, 1);
+                    gameState.bullets.splice(j, 1);
                     bossBullets.splice(i, 1);
                     break; // Виходимо з внутрішнього циклу після видалення
                 }
