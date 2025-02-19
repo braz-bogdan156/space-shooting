@@ -4,6 +4,7 @@ import {startGameTimer} from './startGameTimer.js';
 import {endGame} from './endGame.js';
 import { manageBossBullets } from './manageBossBullets.js';
 import { gameState } from '../game.js';
+import {createBulletCounter} from './bulletCounter.js';
 
 export function continueGame(app) {
     
@@ -15,6 +16,8 @@ export function continueGame(app) {
     background.height = app.screen.height;
     app.stage.addChild(background);
 
+       //створюємо лічильник пострілів
+        createBulletCounter(app);
     
     const spaceship = createSpaceship(app, gameState.maxBullets);
     const boss = createBoss(app);
