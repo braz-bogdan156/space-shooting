@@ -21,6 +21,7 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
 
             // Перевірка зіткнення астероїда з кулями корабля
             for (let j = gameState.bullets.length - 1; j >= 0; j--) {
+                console.log(" Перевіряємо зіткнення:", gameState.bullets[j], asteroids[i]);
                 if (hitTestRectangle(gameState.bullets[j], asteroids[i])) {
                     app.stage.removeChild(asteroids[i]);
                     app.stage.removeChild(gameState.bullets[j]);

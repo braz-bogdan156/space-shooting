@@ -10,8 +10,8 @@ export const createSpaceshipBullet = () => {
             bullet.drawCircle(0, 0, 5);
             bullet.endFill();
 
-            bullet.x = spaceship.x + spaceship.width / 2 - bullet.width / 2;
-            bullet.y = spaceship.y - bullet.height;
+            bullet.x = gameState.spaceship.x + gameState.spaceship.width / 2 - bullet.width / 2;
+            bullet.y = gameState.spaceship.y - bullet.height;
 
             app.stage.addChild(bullet);
 

@@ -9,7 +9,7 @@ export function shootShip(app, spaceship) {
             const spaceshipBullet = createSpaceshipBullet(gameState.spaceship);
             
 
-            spaceship.bullets.push(spaceshipBullet);
+            gameState.bullets.push(spaceshipBullet);
             gameState.bulletData.shotsFired++;
             BulletCounter(gameState.bulletData.shotsFired);
 
