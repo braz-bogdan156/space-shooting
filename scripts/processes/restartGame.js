@@ -13,5 +13,6 @@ export const restartGame = (app) => {
     gameState.asteroidData.spawnedAsteroids = 0;
     gameState.bulletData.shotsFired = 0;  // Скидаємо лічильник пострілів
     gameState.bullets = [];              // Очищаємо масив пуль
+ 
     startGame(app); // Запускаємо гру заново
 };

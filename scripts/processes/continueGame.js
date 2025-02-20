@@ -5,7 +5,7 @@ import {endGame} from './endGame.js';
 import { manageBossBullets } from './manageBossBullets.js';
 import { gameState } from '../game.js';
 import {createBulletCounter} from './bulletCounter.js';
-import { bossHPCounter } from './bossHPCounter.js';
+
 
 export function continueGame(app) {
     
@@ -37,5 +37,5 @@ export function continueGame(app) {
         
        manageBossBullets(app, spaceship, boss, bossBullets);
 
-       bossHPCounter(app);
+       
 }
