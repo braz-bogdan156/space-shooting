@@ -48,7 +48,7 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
                 --bossHP;
                 bossHPBar.text = `Boss HP: ${bossHP}`;
 
-                // if(spaceship.bullets.length === 0 && bossHP !== 0){
+                // if(gameState.bullets.length === 0 && bossHP !== 0){
                 //     clearInterval(spawnIntervalBossBullets);
                 //     endGame(app, "YOU LOSE", "red");
                 //     return;

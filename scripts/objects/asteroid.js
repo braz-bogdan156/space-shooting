@@ -8,7 +8,7 @@ export const createAsteroids = (
   asteroidData
 ) => {
   gameState.asteroids = []; // Очищуємо перед створенням нових
-  let currentSpeed = 1; // Початкова швидкість
+  let currentSpeed = 0.2; // Початкова швидкість
 
   // Функція для створення одного астероїда
   const spawnAsteroid = () => {

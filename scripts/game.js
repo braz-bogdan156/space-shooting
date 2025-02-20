@@ -34,7 +34,9 @@ asteroidData : { spawnedAsteroids: 0 },
     shooting : false
 },
  canShoot : true,
- bulletCounterText : null 
+ bulletCounterText : null ,
+ boss: null,
+ bossBullets: []
 }
 
 

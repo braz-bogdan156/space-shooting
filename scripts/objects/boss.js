@@ -1,16 +1,18 @@
+import {gameState} from '../game.js';
+
 export function createBoss(app) {
-    const boss = new PIXI.Sprite(PIXI.Texture.from('assets/images/boss.png'));
-    boss.width = 150;
-    boss.height = 150;
-    boss.x = app.screen.width / 2 - boss.width / 2;
-    boss.y = 50;
+    gameState.boss = new PIXI.Sprite(PIXI.Texture.from('assets/images/boss.png'));
+    gameState.boss.width = 150;
+    gameState.boss.height = 150;
+    gameState.boss.x = app.screen.width / 2 - gameState.boss.width / 2;
+    gameState.boss.y = 50;
 
 
     app.ticker.add(() => {
-        boss.x += (Math.random() > 0.5 ? 1 : -1) * 5;
-        if (boss.x < 0) boss.x = 0;
-        if (boss.x > app.screen.width - boss.width) boss.x = app.screen.width - boss.width;
+        gameState.boss.x += (Math.random() > 0.5 ? 1 : -1) * 5;
+        if (gameState.boss.x < 0) boss.x = 0;
+        if (gameState.boss.x > app.screen.width - gameState.boss.width) gameState.boss.x = app.screen.width - gameState.boss.width;
     });
     
-    return boss;
+    return gameState.boss;
 }

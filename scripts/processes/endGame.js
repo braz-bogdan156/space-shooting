@@ -31,4 +31,11 @@ export const endGame = (app, message, color, isBossLevel = false) => {
             addNextLevelButton(app, endText, false);
         }
     }
+  else if (message === "YOU LOSE"){
+    const restartButton1 = createStartButton(app);
+    app.stage.addChild(restartButton1);
+    restartButton1.on('pointerdown', () => {
+        restartGame(app); // Перезапуск гри
+    });
+  }
 }
