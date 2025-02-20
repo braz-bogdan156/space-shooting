@@ -39,11 +39,11 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
 
         // Рух і перевірка зіткнень куль корабля
         for (let j = gameState.bullets.length - 1; j >= 0; j--) {
-            let playerBullet = gameState.bullets[j];
+            
 
             // Перевірка зіткнення з босом
-            if (hitTestRectangle(playerBullet, boss)) {
-                app.stage.removeChild(playerBullet);
+            if (hitTestRectangle(gameState.bullets[j], boss)) {
+                app.stage.removeChild(gameState.bullets[j]);
                 gameState.bullets.splice(j, 1);
                 --bossHP;
                 bossHPBar.text = `Boss HP: ${bossHP}`;
@@ -64,14 +64,14 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
 
             // Перевірка зіткнення кулі корабля з кулею боса
             for (let i = bossBullets.length - 1; i >= 0; i--) {
-                let bossBullet = bossBullets[i];
+                
 
-                if (hitTestRectangle(playerBullet, bossBullet)) {
-                    app.stage.removeChild(playerBullet);
-                    app.stage.removeChild(bossBullet);
+                if (hitTestRectangle(gameState.bullets[j], bossBullets[i])) {
+                    app.stage.removeChild(gameState.bullets[j]);
+                    app.stage.removeChild(bossBullets[i]);
                     gameState.bullets.splice(j, 1);
                     bossBullets.splice(i, 1);
-                    break; // Виходимо з внутрішнього циклу після видалення
+                    break; 
                 }
             }
         }

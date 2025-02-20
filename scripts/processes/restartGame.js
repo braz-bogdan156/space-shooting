@@ -11,8 +11,11 @@ export const restartGame = (app) => {
     
 
     //  Видаляємо всі кулі зі сцени
-    gameState.bulletData.shotsFired = 0;
+   
+    
     gameState.asteroidData.spawnedAsteroids = 0;
+   
+   
 
     app.ticker.start(); // Запускаємо анімацію знову
     startGame(app); // Запускаємо гру заново

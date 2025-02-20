@@ -8,7 +8,8 @@ import {createBulletCounter} from './bulletCounter.js';
 
 export function continueGame(app) {
     
-     
+    gameState.bulletData.shotsFired = 0;  // Скидаємо лічильник пострілів
+    gameState.bullets = [];              // Очищаємо масив пуль
    
     const backgroundTexture = PIXI.Texture.from('assets/images/stairs.png');
     const background = new PIXI.Sprite(backgroundTexture);
