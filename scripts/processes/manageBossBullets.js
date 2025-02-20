@@ -3,11 +3,13 @@ import { spawnbossBullet } from '../objects/spawnbossBullet.js';
 import { endGame } from './endGame.js';
 import { gameState } from '../game.js';
 
+
 export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
    const spawnIntervalBossBullets = setInterval(() => {
         const bullet = spawnbossBullet(app, boss);
         bossBullets.push(bullet);
     }, 2000);
+    
 
     app.ticker.add(() => {
         // Рух куль боса
@@ -63,4 +65,5 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
             }
         }
     });
+    
 };
