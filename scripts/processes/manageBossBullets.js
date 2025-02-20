@@ -4,8 +4,8 @@ import { endGame } from './endGame.js';
 import { gameState } from '../game.js';
 
 export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
-    let bossHP = 4;
-    const bossHPBar = new PIXI.Text(`Boss HP: ${bossHP}`, {
+   
+    const bossHPBar = new PIXI.Text(`Boss HP: ${gameState.bossHP}`, {
         fontFamily: 'Arial',
         fontSize: 24,
         fill: 'red'
@@ -45,8 +45,8 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
             if (hitTestRectangle(gameState.bullets[j], boss)) {
                 app.stage.removeChild(gameState.bullets[j]);
                 gameState.bullets.splice(j, 1);
-                --bossHP;
-                bossHPBar.text = `Boss HP: ${bossHP}`;
+                --gameState.bossHP;
+                bossHPBar.text = `Boss HP: ${gameState.bossHP}`;
 
                 // if(gameState.bullets.length === 0 && bossHP !== 0){
                 //     clearInterval(spawnIntervalBossBullets);
