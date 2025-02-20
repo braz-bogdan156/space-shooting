@@ -2,8 +2,8 @@ import { gameState } from "../game.js";
 
 export const createAsteroids = (
   app,
-  totalAsteroids = 10,
-  spawnRate = 3000,
+  totalAsteroids,
+  spawnRate,
   endGame,
   asteroidData
 ) => {
