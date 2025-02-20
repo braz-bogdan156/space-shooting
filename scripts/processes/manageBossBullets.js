@@ -4,17 +4,7 @@ import { endGame } from './endGame.js';
 import { gameState } from '../game.js';
 
 export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
-   
-    const bossHPBar = new PIXI.Text(`Boss HP: ${gameState.bossHP}`, {
-        fontFamily: 'Arial',
-        fontSize: 24,
-        fill: 'red'
-    });
-    bossHPBar.x = 640;
-    bossHPBar.y = 20;
-    app.stage.addChild(bossHPBar);
-
-    const spawnIntervalBossBullets = setInterval(() => {
+   const spawnIntervalBossBullets = setInterval(() => {
         const bullet = spawnbossBullet(app, boss);
         bossBullets.push(bullet);
     }, 2000);
@@ -39,16 +29,15 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
 
         // Рух і перевірка зіткнень куль корабля
         for (let j = gameState.bullets.length - 1; j >= 0; j--) {
-            
-
             // Перевірка зіткнення з босом
             if (hitTestRectangle(gameState.bullets[j], boss)) {
                 app.stage.removeChild(gameState.bullets[j]);
                 gameState.bullets.splice(j, 1);
                 --gameState.bossHP;
-                bossHPBar.text = `Boss HP: ${gameState.bossHP}`;
-
-                // if(gameState.bullets.length === 0 && bossHP !== 0){
+                if(gameState.bossHPBar){ 
+                    gameState.bossHPBar.text = `Boss HP: ${gameState.bossHP}`;
+                }
+               // if(gameState.bullets.length === 0 && bossHP !== 0){
                 //     clearInterval(spawnIntervalBossBullets);
                 //     endGame(app, "YOU LOSE", "red");
                 //     return;
@@ -64,8 +53,6 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
 
             // Перевірка зіткнення кулі корабля з кулею боса
             for (let i = bossBullets.length - 1; i >= 0; i--) {
-                
-
                 if (hitTestRectangle(gameState.bullets[j], bossBullets[i])) {
                     app.stage.removeChild(gameState.bullets[j]);
                     app.stage.removeChild(bossBullets[i]);
