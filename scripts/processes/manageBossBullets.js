@@ -48,7 +48,7 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
             for (let i = bossBullets.length - 1; i >= 0; i--) {
                 const bossBullet = bossBullets[i];
                 if (hitTestRectangle(playerBullet, bossBullet)) {
-                    console.log("Куля корабля", playerBullet, "зіткнулася з кулею боса", bossBullet);
+
                     // Видаляємо обидві кулі
                     app.stage.removeChild(playerBullet);
                     app.stage.removeChild(bossBullet);
@@ -65,13 +65,13 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
 
             // 2. Перевірка зіткнення кулі корабля з босом
             if (hitTestRectangle(playerBullet, boss)) {
-                console.log("Куля корабля", playerBullet, "вдарила по босу! До удару bossHP =", bossHP);
+                
                 // Позначаємо, що ця куля вже оброблена
                 playerBullet.collided = true;
                 app.stage.removeChild(playerBullet);
                 gameState.bullets.splice(j, 1);
                 bossHP--;
-                console.log("Після удару bossHP =", bossHP);
+                
                 bossHPBar.text = `Boss HP: ${bossHP}`;
                 if (bossHP === 0) {
                     clearInterval(spawnIntervalBossBullets);
