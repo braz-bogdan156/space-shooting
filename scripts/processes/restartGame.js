@@ -16,6 +16,8 @@ export const restartGame = (app) => {
     gameState.asteroidData.spawnedAsteroids = 0;
     gameState.bulletData.shotsFired = 0;
     gameState.isGamePaused = true;
+    gameState.boss = null;
+    gameState.bossBullets = [];
 
     // Видаляємо старі обробники клавіш перед їх повторним додаванням
     window.removeEventListener("keydown", handleKeyDown);

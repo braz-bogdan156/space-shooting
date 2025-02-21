@@ -24,7 +24,7 @@ export function continueGame(app) {
     const spaceship = createSpaceship(app, gameState.maxBullets);
     const boss = createBoss(app);
     app.stage.addChild(boss);
-    const bossBullets = [];
+    gameState.bossBullets = [];
 
 
     // Запуск таймера гри
@@ -35,7 +35,7 @@ export function continueGame(app) {
     
    
         
-       manageBossBullets(app, spaceship, boss, bossBullets);
+       manageBossBullets(app, spaceship, boss, gameState.bossBullets);
 
        
 }
