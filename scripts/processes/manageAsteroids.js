@@ -39,14 +39,25 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
                 endGame("YOU LOSE", "red");
                 return; // Завершуємо гру
             }
+
+            // Додаємо лог для перевірки умови
+        console.log("shotsFired: ", gameState.bulletData.shotsFired);
+        console.log("maxBullets: ", gameState.maxBullets);
+        console.log("bullets length: ", gameState.bullets.length);
+        console.log("asteroids length: ", gameState.asteroids.length)
           
-           
+            if (gameState.bulletData.shotsFired >= gameState.maxBullets && gameState.bullets.length ===0 && gameState.asteroids.length > 0) {
+                endGame("YOU LOSE", "red");
+                return; // Завершуємо гру
+            }
 
             if (gameState.asteroids.length === 0 && gameState.asteroidData.spawnedAsteroids >= gameState.totalAsteroids) {
                 endGame("YOU WIN", "green", false);
 
                 return;
             }
+
+          
         }
 
     });
