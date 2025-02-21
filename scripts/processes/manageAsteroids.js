@@ -4,27 +4,26 @@ import { gameState } from '../game.js';
 
 
 export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
- 
+   
     app.ticker.add(() => {
         
         for (let i = gameState.bullets.length - 1; i >= 0; i--) {
-            const bullet = gameState.bullets[i];
-            if (!bullet) continue;
-            bullet.y -= 3; // Рух пуль вгору
-            if (bullet.y < 0) {
-                app.stage.removeChild(bullet);
+            
+            if (! gameState.bullets[i]) continue;
+            gameState.bullets[i].y -= 3; // Рух пуль вгору
+            if ( gameState.bullets[i].y < 0) {
+                app.stage.removeChild( gameState.bullets[i]);
                 gameState.bullets.splice(i, 1);
             }
         }
         // Оновлення астероїдів
         for (let i = gameState.asteroids.length - 1; i >= 0; i--) {
-            const asteroid = gameState.asteroids[i];
-            if (!asteroid) continue;
-            asteroid.y += 1; // Рух астероїда вниз
+            if (!gameState.asteroids[i]) continue;
+            gameState.asteroids[i].y += 1; // Рух астероїда вниз
             
             // Якщо астероїд виходить за межі екрану
-            if (asteroid.y > app.screen.height) {
-                app.stage.removeChild(asteroid);
+            if (gameState.asteroids[i].y > app.screen.height) {
+                app.stage.removeChild(gameState.asteroids[i]);
                 gameState.asteroids.splice(i, 1);
                 endGame( "YOU LOSE", "red");
                 return;
@@ -32,11 +31,10 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
             
             // Перевірка колізій астероїда з пулями корабля
             for (let j = gameState.bullets.length - 1; j >= 0; j--) {
-                const bullet = gameState.bullets[j];
-                if (!bullet) continue;
-                if (hitTestRectangle(bullet, asteroid)) {
-                    app.stage.removeChild(asteroid);
-                    app.stage.removeChild(bullet);
+                if (!gameState.bullets[j]) continue;
+                if (hitTestRectangle(gameState.bullets[j], gameState.asteroids[i])) {
+                    app.stage.removeChild(gameState.asteroids[i]);
+                    app.stage.removeChild(gameState.bullets[j]);
                     gameState.asteroids.splice(i, 1);
                     gameState.bullets.splice(j, 1);
                     break;
@@ -49,8 +47,6 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
                 return;
             }
         }
-        
-        
         
         // Умова програшу, якщо всі снаряди витрачено, але астероїди залишились
         if (gameState.bulletData.shotsFired >= gameState.maxBullets &&
