@@ -22,60 +22,63 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
     app.ticker.add(() => {
         // Рух куль боса
         for (let i = bossBullets.length - 1; i >= 0; i--) {
-            if (!bossBullets[i]) continue;
-            bossBullets[i].y += 5;
-            if (bossBullets[i].y > app.screen.height) {
-                app.stage.removeChild(bossBullets[i]);
+            const bossBullet = bossBullets[i];
+            if (!bossBullet) continue;
+            bossBullet.y += 5;
+            if (bossBullet.y > app.screen.height) {
+                app.stage.removeChild(bossBullet);
                 bossBullets.splice(i, 1);
                 continue;
             }
-
-            // Перевірка зіткнення з кораблем
-            if (hitTestRectangle(bossBullets[i], gameState.spaceship)) {
-                app.stage.removeChild(bossBullets[i]);
+            // Перевірка зіткнення куль боса з кораблем
+            if (hitTestRectangle(bossBullet, gameState.spaceship)) {
+                app.stage.removeChild(bossBullet);
                 endGame(app, "YOU LOSE", "red");
             }
         }
 
         // Рух і перевірка зіткнень куль корабля
         for (let j = gameState.bullets.length - 1; j >= 0; j--) {
-           
+            let playerBullet = gameState.bullets[j];
+            // Якщо ця куля вже була оброблена, пропускаємо її
+            if (playerBullet.collided) continue;
+            
+            let collidedWithBossBullet = false;
+            // 1. Перевірка зіткнення кулі корабля з кулею боса
+            for (let i = bossBullets.length - 1; i >= 0; i--) {
+                const bossBullet = bossBullets[i];
+                if (hitTestRectangle(playerBullet, bossBullet)) {
+                    console.log("Куля корабля", playerBullet, "зіткнулася з кулею боса", bossBullet);
+                    // Видаляємо обидві кулі
+                    app.stage.removeChild(playerBullet);
+                    app.stage.removeChild(bossBullet);
+                    // Позначаємо постріл як оброблений
+                    playerBullet.collided = true;
+                    // Видаляємо з масивів
+                    gameState.bullets.splice(j, 1);
+                    bossBullets.splice(i, 1);
+                    collidedWithBossBullet = true;
+                    break;
+                }
+            }
+            if (collidedWithBossBullet) continue;
 
-            // Перевірка зіткнення з босом
-            if (hitTestRectangle(gameState.bullets[j], boss)) {
-               
-                app.stage.removeChild(gameState.bullets[j]);
+            // 2. Перевірка зіткнення кулі корабля з босом
+            if (hitTestRectangle(playerBullet, boss)) {
+                console.log("Куля корабля", playerBullet, "вдарила по босу! До удару bossHP =", bossHP);
+                // Позначаємо, що ця куля вже оброблена
+                playerBullet.collided = true;
+                app.stage.removeChild(playerBullet);
                 gameState.bullets.splice(j, 1);
                 bossHP--;
-            
+                console.log("Після удару bossHP =", bossHP);
                 bossHPBar.text = `Boss HP: ${bossHP}`;
-
-                // if(gameState.bullets.length === 0 && bossHP !== 0){
-                //     clearInterval(spawnIntervalBossBullets);
-                //     endGame(app, "YOU LOSE", "red");
-                //     return;
-                // }
-
                 if (bossHP === 0) {
-                  
                     clearInterval(spawnIntervalBossBullets);
                     endGame(app, "YOU WIN", "green", true);
                     return;
                 }
-                continue; // Пропускаємо інші перевірки, якщо вже є влучання по босу
-            }
-
-
-            for (let i = bossBullets.length - 1; i >= 0; i--) {
-                if (hitTestRectangle(gameState.bullets[j], bossBullets[i])) {
-                    
-                    app.stage.removeChild(gameState.bullets[j]);
-                    app.stage.removeChild(bossBullets[i]);
-                    gameState.bullets.splice(j, 1);
-                    bossBullets.splice(i, 1);
-                  
-                    break; 
-                }
+                continue;
             }
         }
     });
