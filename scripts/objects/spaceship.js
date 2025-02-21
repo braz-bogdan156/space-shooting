@@ -1,30 +1,32 @@
 import {gameState} from '../game.js';
 import {setSpaceship} from '../processes/setSpaceship.js';
+
 import { spaceshipBullets } from './spaceshipBullets.js';
 
 export const createSpaceship = (app) => {
-     const spaceship = new PIXI.Sprite(PIXI.Texture.from('assets/images/ship.png'));
+     gameState.spaceship = new PIXI.Sprite(PIXI.Texture.from('assets/images/ship.png'));
 
-    spaceship.width = 150;
-    spaceship.height = 150;
-    spaceship.x = app.screen.width / 2 - 75;
-    spaceship.y = app.screen.height - 250;
+    gameState.spaceship.width = 150;
+    gameState.spaceship.height = 150;
+    gameState.spaceship.x = app.screen.width / 2 - 75;
+    gameState.spaceship.y = app.screen.height - 250;
 
-    spaceship.bullets = gameState.bullets;
+    gameState.spaceship.bullets = gameState.bullets;
 
-    app.stage.addChild(spaceship);
+    app.stage.addChild(gameState.spaceship);
 
     app.ticker.add(() => {
         if (gameState.keys["ArrowLeft"]) {
-            spaceship.x = Math.max(spaceship.x - 10, 0);
+            gameState.spaceship.x = Math.max(gameState.spaceship.x - 10, 0);
         }
         if (gameState.keys["ArrowRight"]) {
-            spaceship.x = Math.min(spaceship.x + 10, app.screen.width - spaceship.width);
+            gameState.spaceship.x = Math.min(gameState.spaceship.x + 10, app.screen.width - gameState.spaceship.width);
         }
     })
 
-    setSpaceship(spaceship);
-    spaceshipBullets(spaceship);
+    setSpaceship(gameState.spaceship);
+    spaceshipBullets(gameState.spaceship);
+    
 };
 
 

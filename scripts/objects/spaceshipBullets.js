@@ -1,10 +1,11 @@
 import {app, gameState} from '../game.js';
 
-export const spaceshipBullets = (spaceship) => {
-    
 
+export const spaceshipBullets = () => {
+    
+   
     app.ticker.add(() => {
-        
+       
 
         for (let i = gameState.bullets.length - 1; i >= 0; i--) {
             if(gameState.bullets[i]){

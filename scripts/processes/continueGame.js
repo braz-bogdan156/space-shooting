@@ -8,6 +8,7 @@ import {createBulletCounter} from './bulletCounter.js';
 
 
 export function continueGame(app) {
+  
     
     gameState.bulletData.shotsFired = 0;  // Скидаємо лічильник пострілів
     gameState.bullets = [];              // Очищаємо масив пуль

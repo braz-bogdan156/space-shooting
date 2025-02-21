@@ -1,9 +1,12 @@
 import { hitTestRectangle } from './hitTestRectangle.js';
 import { gameState } from '../game.js';
 
+
+
 export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
+ 
     app.ticker.add(() => {
-        // Оновлення пуль корабля: рух вгору і видалення, якщо пуля вийшла за межі
+        
         for (let i = gameState.bullets.length - 1; i >= 0; i--) {
             const bullet = gameState.bullets[i];
             if (!bullet) continue;
@@ -13,7 +16,6 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
                 gameState.bullets.splice(i, 1);
             }
         }
-        
         // Оновлення астероїдів
         for (let i = gameState.asteroids.length - 1; i >= 0; i--) {
             const asteroid = gameState.asteroids[i];
@@ -48,11 +50,7 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
             }
         }
         
-        // Додаткове логування
-        console.log("shotsFired:", gameState.bulletData.shotsFired);
-        console.log("maxBullets:", gameState.maxBullets);
-        console.log("bullets length:", gameState.bullets.length);
-        console.log("asteroids length:", gameState.asteroids.length);
+        
         
         // Умова програшу, якщо всі снаряди витрачено, але астероїди залишились
         if (gameState.bulletData.shotsFired >= gameState.maxBullets &&
