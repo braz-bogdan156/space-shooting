@@ -13,7 +13,7 @@ export const endGame = (app, message, color, isBossLevel = false) => {
     });
 
     endText.x = app.screen.width / 2 - endText.width / 2;
-    endText.y = app.screen.height / 2 - endText.height / 2;
+    endText.y = app.screen.height / 2 - endText.height / 2 - 100;
 
     app.stage.addChild(endText);
 
