@@ -26,7 +26,7 @@ export function addNextLevelButton(app, endText) {
 
   // Обробник натискання
   nextLevelButton.on("pointerdown", () => {
-    console.log("Кнопка переходу на боса була натиснута");
+   
 
     app.stage.removeChildren();
 
