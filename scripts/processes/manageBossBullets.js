@@ -39,6 +39,7 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
       if (!playerBullet) continue;
 
       if (playerBullet.y < 0) {
+        console.log("Player bullet left screen, removing.", playerBullet);
         app.stage.removeChild(playerBullet);
         gameState.bullets.splice(j, 1);
         continue;

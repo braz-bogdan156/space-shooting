@@ -17,11 +17,12 @@ export const startGameTimer = (app, duration, endGame) => {
         if (timeLeft > 0) {
             timeLeft--;
             timerText.text = `Time: ${timeLeft}`;
-
-        } else {
-            clearInterval(timerInterval); // Зупиняємо таймер
-            timerText.text = `Time: 0`;
-            endGame(app, 'YOU LOSE', 'red');
         }
+
+        // } else {
+        //     clearInterval(timerInterval); // Зупиняємо таймер
+        //     timerText.text = `Time: 0`;
+        //     endGame(app, 'YOU LOSE', 'red');
+        // }
     }, 1000);
 };

@@ -5,6 +5,7 @@ import {handleKeyUp} from './handleKeyUp.js';
 import {handleKeyDown} from './handleKeyDown.js';
  
 export const restartGame = (app) => {
+    
     app.stage.removeChildren(); // Видаляємо всі об'єкти зі сцени
     setGamePaused(true); // Встановлюємо гру на паузу
     app.ticker.stop(); // Зупиняємо оновлення гри
