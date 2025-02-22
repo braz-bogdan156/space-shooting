@@ -10,14 +10,7 @@ import { setGamePaused } from './setGamePaused.js';
 export function continueGame(app) {
      
 
-    // Видаляємо всі ticker-колбеки (без збереження callback‑ів)
-    app.ticker.removeAll();
-    
-    // Очищення сцени
-    app.stage.removeChildren();
-
-    // Знімаємо паузу
-    setGamePaused(false);
+   
 
     gameState.bulletData.shotsFired = 0;
    
