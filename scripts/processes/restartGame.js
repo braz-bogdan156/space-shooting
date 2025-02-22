@@ -3,6 +3,7 @@ import {startGame} from './startGame.js';
 import {gameState} from '../game.js';
 import {handleKeyUp} from './handleKeyUp.js';
 import {handleKeyDown} from './handleKeyDown.js';
+import { clearTickers } from './clearTickers.js';
  
 export const restartGame = (app) => {
     
@@ -20,6 +21,7 @@ export const restartGame = (app) => {
     gameState.boss = null;
     gameState.bossBullets = [];
     gameState.bossHP = 4;
+    clearTickers();
 
     // Видаляємо старі обробники клавіш перед їх повторним додаванням
     window.removeEventListener("keydown", handleKeyDown);

@@ -13,6 +13,7 @@ import {createBulletCounter} from '../objects/createBulletCounter.js';
 // === ЛОГІКА ГРИ (Оновлюється лише після натискання кнопки) ===
 export function startGame(app) {
     
+    
    
     if (!getGamePaused()) return; // Якщо гра вже йде, нічого не робити
 
