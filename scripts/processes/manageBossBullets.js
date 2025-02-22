@@ -12,7 +12,7 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
     bossBullets.push(bullet);
   }, 2000);
 
-  app.ticker.add(() => {
+   const bossProcesses = () => {
     // Рух куль боса
     for (let i = bossBullets.length - 1; i >= 0; i--) {
       const bossBullet = bossBullets[i];
@@ -85,5 +85,7 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
         continue;
       }
     }
-  });
+  };
+  app.ticker.add(bossProcesses);
+  gameState.tickerCallbacks.push(() => app.ticker.remove(bossProcesses));
 };
