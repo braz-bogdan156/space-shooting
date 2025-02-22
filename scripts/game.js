@@ -25,9 +25,10 @@ app.stage.addChild(background);
 isGamePaused : true,
 // Параметри астероїдів
 asteroidData : { spawnedAsteroids: 0 },
- totalAsteroids : 1,
+ totalAsteroids : 10,
  asteroids: [],
- bulletData : { shotsFired : 0 },
+ currentSpeed: 0.2, 
+   bulletData : { shotsFired : 0 },
   maxBullets : 10, // Встановлюємо максимальну кількість куль
    keys : {},
  shootingState : {
