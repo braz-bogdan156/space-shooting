@@ -8,7 +8,7 @@ import { endGame } from './endGame.js';
 import { gameState, background} from '../game.js';
 import {handleKeyDown} from './handleKeyDown.js';
 import {handleKeyUp} from './handleKeyUp.js';
-import {createBulletCounter} from './bulletCounter.js';
+import {createBulletCounter} from '../objects/createBulletCounter.js';
 
 // === ЛОГІКА ГРИ (Оновлюється лише після натискання кнопки) ===
 export function startGame(app) {

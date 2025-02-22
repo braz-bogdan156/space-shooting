@@ -4,7 +4,7 @@ import {startGameTimer} from './startGameTimer.js';
 import {endGame} from './endGame.js';
 import { manageBossBullets } from './manageBossBullets.js';
 import { gameState, background } from '../game.js';
-import {createBulletCounter} from './bulletCounter.js';
+import {createBulletCounter} from '../objects/createBulletCounter.js';
 import {clearTickers} from './clearTickers.js';
 import { handleKeyDown } from './handleKeyDown.js';
 import { handleKeyUp } from './handleKeyUp.js';

@@ -37,6 +37,7 @@ asteroidData : { spawnedAsteroids: 0 },
  bulletCounterText : null ,
     boss: null,
     bossBullets : [],
+     bossHP : 4,
    tickerCallbacks: [],
  }
 

@@ -18,6 +18,7 @@ export const restartGame = (app) => {
     gameState.isGamePaused = true;
     gameState.boss = null;
     gameState.bossBullets = [];
+    gameState.bossHP = 4;
 
     // Видаляємо старі обробники клавіш перед їх повторним додаванням
     window.removeEventListener("keydown", handleKeyDown);

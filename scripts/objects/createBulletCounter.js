@@ -1,4 +1,4 @@
-import { updateBulletCounter } from "./updateBulletCounter.js";
+import { updateBulletCounter } from "../processes/updateBulletCounter.js";
 import { app, gameState } from "../game.js";
 // Функція для створення лічильника куль
 export const createBulletCounter = () => {
