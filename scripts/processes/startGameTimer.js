@@ -17,9 +17,11 @@ export const startGameTimer = (app, duration, endGame) => {
         if (timeLeft > 0) {
             timeLeft--;
             timerText.text = `Time: ${timeLeft}`;
+
         } else {
             clearInterval(timerInterval); // Зупиняємо таймер
             timerText.text = `Time: 0`;
+            console.log("Timer reached 0. Ending game with YOU LOSE.");
             endGame(app, 'YOU LOSE', 'red');
         }
     }, 1000);

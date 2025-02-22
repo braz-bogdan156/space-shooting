@@ -13,8 +13,8 @@ document.body.appendChild(app.view);
 // === ІНІЦІАЛІЗАЦІЯ ГРИ (Об'єкти створені, але гра на паузі) ===
 
 // Фон
-export const backgroundTexture = PIXI.Texture.from('assets/images/stairs.png');
-const background = new PIXI.Sprite(backgroundTexture);
+const backgroundTexture = PIXI.Texture.from('assets/images/stairs.png');
+ export const background = new PIXI.Sprite(backgroundTexture);
 background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
@@ -25,7 +25,7 @@ app.stage.addChild(background);
 isGamePaused : true,
 // Параметри астероїдів
 asteroidData : { spawnedAsteroids: 0 },
- totalAsteroids : 4,
+ totalAsteroids : 1,
  asteroids: [],
  bulletData : { shotsFired : 0 },
   maxBullets : 10, // Встановлюємо максимальну кількість куль
@@ -36,7 +36,8 @@ asteroidData : { spawnedAsteroids: 0 },
  canShoot : true,
  bulletCounterText : null ,
     boss: null,
-    bossBullets : []
+    bossBullets : [],
+   tickerCallbacks: [],
  }
 
 

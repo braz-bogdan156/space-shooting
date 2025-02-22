@@ -5,7 +5,7 @@ import {createAsteroids} from '../objects/createAsteroids.js';
 import {startGameTimer} from './startGameTimer.js';
 import { manageAsteroids } from './manageAsteroids.js';
 import { endGame } from './endGame.js';
-import { gameState} from '../game.js';
+import { gameState, background} from '../game.js';
 import {handleKeyDown} from './handleKeyDown.js';
 import {handleKeyUp} from './handleKeyUp.js';
 import {createBulletCounter} from './bulletCounter.js';
@@ -20,11 +20,7 @@ export function startGame(app) {
     
 
     // Додаємо фон заново
-    const backgroundTexture = PIXI.Texture.from('assets/images/stairs.png');
-    const background = new PIXI.Sprite(backgroundTexture);
-    background.width = app.screen.width;
-    background.height = app.screen.height;
-    app.stage.addChild(background);
+   app.stage.addChild(background);
 
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
@@ -40,8 +36,8 @@ export function startGame(app) {
 
 
     // Запуск таймера гри
-    startGameTimer(app, 15, (message) => {
-        endGame(app, message, 'red');
+    startGameTimer(app, 60, (message, color) => {
+        endGame(app, message, color);
     });
 
     // Анімація та обробка астероїдів тепер активна

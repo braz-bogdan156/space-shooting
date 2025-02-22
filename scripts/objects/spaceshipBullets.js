@@ -4,7 +4,7 @@ import {app, gameState} from '../game.js';
 export const spaceshipBullets = () => {
     
    
-    app.ticker.add(() => {
+    const moveSpaceshipBullets = () => {
        
 
         for (let i = gameState.bullets.length - 1; i >= 0; i--) {
@@ -16,8 +16,9 @@ export const spaceshipBullets = () => {
             }
         }
         }
-    });
-
+    };
+    app.ticker.add(moveSpaceshipBullets);
+    gameState.tickerCallbacks.push(() => app.ticker.remove(moveSpaceshipBullets));
     
 }
 

@@ -20,9 +20,11 @@ export function createAsteroids(app, totalAsteroids, spawnRate, asteroidData) {
   }, spawnRate);
 
   // Рух астероїдів у ticker
-  app.ticker.add(() => {
+  const moveAsteroids = () => {
     gameState.asteroids.forEach((asteroid) => {
       asteroid.y += currentSpeed;
     });
-  });
+  };
+  app.ticker.add(moveAsteroids);
+  gameState.tickerCallbacks.push(() => app.ticker.remove(moveAsteroids));
 }

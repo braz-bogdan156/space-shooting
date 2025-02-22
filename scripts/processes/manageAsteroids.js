@@ -5,7 +5,7 @@ import { gameState } from '../game.js';
 
 export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
    
-    app.ticker.add(() => {
+    const manageAsteroids1 = () => {
         
         for (let i = gameState.bullets.length - 1; i >= 0; i--) {
             
@@ -62,5 +62,7 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
             endGame( "YOU WIN", "green", false);
             return;
         }
-    });
+    };
+    app.ticker.add(manageAsteroids1);
+    gameState.tickerCallbacks.push(() => app.ticker.remove(manageAsteroids1));
 };

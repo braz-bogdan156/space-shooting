@@ -1,6 +1,6 @@
 import {gameState} from '../game.js';
 // Функція для створення одного астероїда
-const spawnSingleAsteroid = () => {
+export const spawnSingleAsteroid = (app) => {
     const asteroid = new PIXI.Sprite(
       PIXI.Texture.from("assets/images/asteroid.png")
     );

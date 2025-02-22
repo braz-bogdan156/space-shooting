@@ -3,23 +3,27 @@ import {createBoss} from '../objects/boss.js';
 import {startGameTimer} from './startGameTimer.js';
 import {endGame} from './endGame.js';
 import { manageBossBullets } from './manageBossBullets.js';
-import { gameState } from '../game.js';
+import { gameState, background } from '../game.js';
 import {createBulletCounter} from './bulletCounter.js';
-import { setGamePaused } from './setGamePaused.js';
+import {clearTickers} from './clearTickers.js';
+import { handleKeyDown } from './handleKeyDown.js';
+import { handleKeyUp } from './handleKeyUp.js';
 
 export function continueGame(app) {
      
+    clearTickers();
 
+    app.stage.removeChildren();
+
+    window.removeEventListener("keydown", handleKeyDown);
+    window.removeEventListener("keyup", handleKeyUp);
    
 
     gameState.bulletData.shotsFired = 0;
    
     
    
-    const backgroundTexture = PIXI.Texture.from('assets/images/stairs.png');
-    const background = new PIXI.Sprite(backgroundTexture);
-    background.width = app.screen.width;
-    background.height = app.screen.height;
+    
     app.stage.addChild(background);
 
        //створюємо лічильник пострілів
@@ -30,10 +34,11 @@ export function continueGame(app) {
     app.stage.addChild(boss);
     gameState.bossBullets = [];
 
-     
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
 
     // Запуск таймера гри
-    startGameTimer(app, 15, (message) => {
+    startGameTimer(app, 60, (message) => {
         endGame(app, message, 'red');
     });
 
