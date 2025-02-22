@@ -5,12 +5,23 @@ import {endGame} from './endGame.js';
 import { manageBossBullets } from './manageBossBullets.js';
 import { gameState } from '../game.js';
 import {createBulletCounter} from './bulletCounter.js';
-
+import { setGamePaused } from './setGamePaused.js';
 
 export function continueGame(app) {
+     
+
+    // Видаляємо всі ticker-колбеки (без збереження callback‑ів)
+    app.ticker.removeAll();
     
-    gameState.bulletData.shotsFired = 0;  // Скидаємо лічильник пострілів
-    gameState.bullets = [];              // Очищаємо масив пуль
+    // Очищення сцени
+    app.stage.removeChildren();
+
+    // Знімаємо паузу
+    setGamePaused(false);
+
+    gameState.bulletData.shotsFired = 0;
+   
+    
    
     const backgroundTexture = PIXI.Texture.from('assets/images/stairs.png');
     const background = new PIXI.Sprite(backgroundTexture);
@@ -26,6 +37,7 @@ export function continueGame(app) {
     app.stage.addChild(boss);
     gameState.bossBullets = [];
 
+     
 
     // Запуск таймера гри
     startGameTimer(app, 15, (message) => {
@@ -35,5 +47,5 @@ export function continueGame(app) {
     
    manageBossBullets(app, spaceship, boss, gameState.bossBullets);
     
-       
+   
 }
