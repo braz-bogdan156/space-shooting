@@ -1,7 +1,7 @@
 import {createSpaceship} from '../objects/spaceship.js';
 import {getGamePaused} from '../processes/getGamePaused.js';
 import {setGamePaused} from '../processes/setGamePaused.js';
-import {createAsteroids} from '../objects/asteroid.js';
+import {createAsteroids} from '../objects/createAsteroids.js';
 import {startGameTimer} from './startGameTimer.js';
 import { manageAsteroids } from './manageAsteroids.js';
 import { endGame } from './endGame.js';
@@ -36,7 +36,7 @@ export function startGame(app) {
     const spaceship = createSpaceship(app, gameState.maxBullets);
 
     // Створення астероїдів
-    const asteroids = createAsteroids(app, gameState.totalAsteroids, 3000, (message, color) => endGame(app, message, color), gameState.asteroidData);
+    const asteroids = createAsteroids(app, gameState.totalAsteroids, 3000, gameState.asteroidData);
 
 
     // Запуск таймера гри
