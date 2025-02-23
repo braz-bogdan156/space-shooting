@@ -15,14 +15,7 @@ export const createSpaceship = (app) => {
 
     app.stage.addChild(gameState.spaceship);
 
-    const moveSpaceship = () => {
-        if (gameState.keys["ArrowLeft"]) {
-            gameState.spaceship.x = Math.max(gameState.spaceship.x - 10, 0);
-        }
-        if (gameState.keys["ArrowRight"]) {
-            gameState.spaceship.x = Math.min(gameState.spaceship.x + 10, app.screen.width - gameState.spaceship.width);
-        }
-    };
+  
     app.ticker.add(moveSpaceship);
     gameState.tickerCallbacks.push(() => app.ticker.remove(moveSpaceship));
 

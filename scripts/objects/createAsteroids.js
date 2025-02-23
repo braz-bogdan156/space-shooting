@@ -1,5 +1,6 @@
 import { gameState } from "../game.js";
 import { spawnAsteroidsGroup } from "./spawnAsteroidsGroup.js";
+import {moveAsteroids} from '../tickerCallbacks/moveAsteroids.js';
 
 export function createAsteroids(app, totalAsteroids, spawnRate, asteroidData) {
   // Задаємо початкову швидкість
@@ -19,12 +20,7 @@ export function createAsteroids(app, totalAsteroids, spawnRate, asteroidData) {
     }
   }, spawnRate);
 
-  // Рух астероїдів у ticker
-  const moveAsteroids = () => {
-    gameState.asteroids.forEach((asteroid) => {
-      asteroid.y += gameState.currentSpeed;
-    });
-  };
+  
   app.ticker.add(moveAsteroids);
   gameState.tickerCallbacks.push(() => app.ticker.remove(moveAsteroids));
 }
