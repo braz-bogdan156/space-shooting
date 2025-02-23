@@ -37,9 +37,11 @@ export function startGame(app) {
 
 
     // Запуск таймера гри
-    startGameTimer(app, 60, (message, color) => {
+    const timerId = startGameTimer(app, 60, (message, color) => {
         endGame(app, message, color);
     });
+
+    gameState.timerInterval = timerId;
 
     // Анімація та обробка астероїдів тепер активна
     manageAsteroids(app, spaceship, asteroids,

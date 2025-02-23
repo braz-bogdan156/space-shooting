@@ -24,4 +24,5 @@ export const startGameTimer = (app, duration, endGame) => {
             }, 100);
         }
     }, 1000);
+    return timerInterval;
 };
