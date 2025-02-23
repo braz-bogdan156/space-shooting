@@ -1,4 +1,5 @@
 import {gameState} from '../game.js';
+import {moveBoss} from '../tickerCallbacks/moveBoss.js';
 
 export function createBoss(app) {
     gameState.boss = new PIXI.Sprite(PIXI.Texture.from('assets/images/boss.png'));
@@ -8,14 +9,7 @@ export function createBoss(app) {
     gameState.boss.y = 50;
 
 
-  const moveBoss = () => {
-        // Переконаємося, що gameState.boss не null
-          if (!gameState.boss) return;
-          
-        gameState.boss.x += (Math.random() > 0.5 ? 1 : -1) * 20;
-        if (gameState.boss.x < 0) gameState.boss.x = 0;
-        if (gameState.boss.x > app.screen.width - gameState.boss.width) gameState.boss.x = app.screen.width - gameState.boss.width;
-    };
+  
     app.ticker.add(moveBoss);
     gameState.tickerCallbacks.push(() => app.ticker.remove(moveBoss));
     return gameState.boss;
