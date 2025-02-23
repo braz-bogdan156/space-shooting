@@ -1,6 +1,6 @@
 import {gameState} from '../game.js';
 import {setSpaceship} from '../processes/setSpaceship.js';
-
+import { moveSpaceship } from '../tickerCallbacks/moveSpaceship.js';
 import { spaceshipBullets } from './spaceshipBullets.js';
 
 export const createSpaceship = (app) => {
