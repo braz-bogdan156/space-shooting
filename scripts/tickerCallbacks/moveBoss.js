@@ -1,4 +1,4 @@
-import {gameState} from '../game.js';
+import {app, gameState} from '../game.js';
 
 export const moveBoss = () => {
     // Переконаємося, що gameState.boss не null
