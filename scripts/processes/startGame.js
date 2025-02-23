@@ -37,7 +37,7 @@ export function startGame(app) {
 
 
     // Запуск таймера гри
-    const timerId = startGameTimer(app, 60, (message, color) => {
+    const timerId = startGameTimer(app, 5, (message, color) => {
         endGame(app, message, color);
     });
 

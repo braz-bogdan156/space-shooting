@@ -11,6 +11,12 @@ export const restartGame = (app) => {
     setGamePaused(true); // Встановлюємо гру на паузу
     app.ticker.stop(); // Зупиняємо оновлення гри
 
+      // Якщо існує старий інтервал, очищуємо його
+  if (gameState.timerInterval) {
+    clearInterval(gameState.timerInterval);
+    gameState.timerInterval = null;
+  }
+
     // Очищення стану гри
     gameState.asteroids = [];
     gameState.bullets = [];
