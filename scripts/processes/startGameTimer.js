@@ -1,3 +1,5 @@
+import {gameState} from '../game.js';
+
 export const startGameTimer = (app, duration, endGame) => {
     let timeLeft = duration;
 
@@ -9,6 +11,10 @@ export const startGameTimer = (app, duration, endGame) => {
     timerText.x = 10;
     timerText.y = 10;
     app.stage.addChild(timerText);
+
+    if (gameState.timerInterval) {
+        clearInterval(gameState.timerInterval);
+    }
 
     const timerInterval = setInterval(() => {
         if (timeLeft > 0) {
@@ -24,5 +30,6 @@ export const startGameTimer = (app, duration, endGame) => {
             }, 100);
         }
     }, 1000);
+    gameState.timerInterval = timerInterval;
     return timerInterval;
 };
