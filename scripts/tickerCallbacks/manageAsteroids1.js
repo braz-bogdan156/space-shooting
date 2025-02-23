@@ -23,7 +23,7 @@ export const manageAsteroids1 = () => {
         if (gameState.asteroids[i].y > app.screen.height) {
             app.stage.removeChild(gameState.asteroids[i]);
             gameState.asteroids.splice(i, 1);
-            endGame( "YOU LOSE", "red");
+            endGame(app, "YOU LOSE", "red");
             return;
         }
         
@@ -41,7 +41,7 @@ export const manageAsteroids1 = () => {
         
         // Перевірка колізії астероїда з кораблем
         if (gameState.asteroids[i] && hitTestRectangle(gameState.asteroids[i], gameState.spaceship)) {
-            endGame( "YOU LOSE", "red");
+            endGame(app, "YOU LOSE", "red");
             return;
         }
     }
@@ -50,14 +50,14 @@ export const manageAsteroids1 = () => {
     if (gameState.bulletData.shotsFired >= gameState.maxBullets &&
         gameState.bullets.length === 0 &&
         gameState.asteroids.length > 0) {
-        endGame( "YOU LOSE", "red");
+        endGame(app, "YOU LOSE", "red");
         return;
     }
     
     // Умова перемоги, якщо всі астероїди знищено
     if (gameState.asteroids.length === 0 &&
         gameState.asteroidData.spawnedAsteroids >= gameState.totalAsteroids) {
-        endGame( "YOU WIN", "green", false);
+        endGame(app, "YOU WIN", "green", false);
         return;
     }
 };
