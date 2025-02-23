@@ -1,4 +1,4 @@
-import {gameState} from '../game.js';
+
 export const moveBossBullets = (app, bossBullets) => {
      // Рух куль боса
         for (let i = bossBullets.length - 1; i >= 0; i--) {
@@ -11,6 +11,5 @@ export const moveBossBullets = (app, bossBullets) => {
             continue;
           }
         };
-         app.ticker.add(moveBossBullets);
-        gameState.tickerCallbacks.push(() => app.ticker.remove(moveBossBullets));
+      
 }

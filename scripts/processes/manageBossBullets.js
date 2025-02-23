@@ -11,15 +11,19 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
   const spawnIntervalBossBullets = setInterval(() => {
     const bullet = spawnbossBullet(app, boss);
     bossBullets.push(bullet);
-  
   }, 2000);
 
   const bossProcesses = () => {
+    const bossBulletMovementCallback = () => {
       moveBossBullets(app, bossBullets);
+    };
+    app.ticker.add(bossBulletMovementCallback);
+    gameState.tickerCallbacks.push(() =>
+      app.ticker.remove(bossBulletMovementCallback)
+    );
 
-      for(let i = bossBullets.length - 1; i>=0; i--) {
+    for (let i = bossBullets.length - 1; i >= 0; i--) {
       if (hitTestRectangle(bossBullets[i], gameState.spaceship)) {
-      
         app.stage.removeChild(bossBullets[i]);
         endGame(app, "YOU LOSE", "red");
         return;
@@ -32,10 +36,12 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
 
       // Видаляємо кулі, які виходять за межі екрану
       if (gameState.bullets[j].y < 0) {
-        
         app.stage.removeChild(gameState.bullets[j]);
         gameState.bullets.splice(j, 1);
-        if (gameState.bulletData.shotsFired >= gameState.maxBullets && gameState.bossHP > 0) {
+        if (
+          gameState.bulletData.shotsFired >= gameState.maxBullets &&
+          gameState.bossHP > 0
+        ) {
           endGame(app, "YOU LOSE", "red");
           return;
         }
@@ -51,7 +57,6 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
       // 1. Перевірка зіткнення кулі корабля з кулею боса
       for (let i = bossBullets.length - 1; i >= 0; i--) {
         if (hitTestRectangle(gameState.bullets[j], bossBullets[i])) {
-
           app.stage.removeChild(gameState.bullets[j]);
           app.stage.removeChild(bossBullets[i]);
           gameState.bullets[j].collided = true;
@@ -65,16 +70,14 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
 
       // 2. Перевірка зіткнення кулі корабля з босом
       if (hitTestRectangle(gameState.bullets[j], boss)) {
-    
         gameState.bullets[j].collided = true;
         app.stage.removeChild(gameState.bullets[j]);
         gameState.bullets.splice(j, 1);
         gameState.bossHP--;
-      
+
         bossHPBar.text = `Boss HP: ${gameState.bossHP}`;
 
         if (gameState.bossHP === 0) {
-         
           clearInterval(spawnIntervalBossBullets);
           endGame(app, "YOU WIN", "green", true);
           return;
