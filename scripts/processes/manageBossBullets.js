@@ -10,21 +10,23 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
   const spawnIntervalBossBullets = setInterval(() => {
     const bullet = spawnbossBullet(app, boss);
     bossBullets.push(bullet);
+  
   }, 2000);
 
-   const bossProcesses = () => {
+  const bossProcesses = () => {
     // Рух куль боса
     for (let i = bossBullets.length - 1; i >= 0; i--) {
-      const bossBullet = bossBullets[i];
-      if (!bossBullet) continue;
-      bossBullet.y += 5;
-      if (bossBullet.y > app.screen.height) {
-        app.stage.removeChild(bossBullet);
+      if (!bossBullets[i]) continue;
+      bossBullets[i].y += 5;
+      if (bossBullets[i].y > app.screen.height) {
+        
+        app.stage.removeChild(bossBullets[i]);
         bossBullets.splice(i, 1);
         continue;
       }
-      if (hitTestRectangle(bossBullet, gameState.spaceship)) {
-        app.stage.removeChild(bossBullet);
+      if (hitTestRectangle(bossBullets[i], gameState.spaceship)) {
+      
+        app.stage.removeChild(bossBullets[i]);
         endGame(app, "YOU LOSE", "red");
         return;
       }
@@ -32,16 +34,13 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
 
     // Рух і перевірка колізій куль корабля
     for (let j = gameState.bullets.length - 1; j >= 0; j--) {
-      const playerBullet = gameState.bullets[j];
-      if (!playerBullet) continue;
+      if (!gameState.bullets[j]) continue;
 
-      // Видаляємо кулі, які виходять за межі екрану, та збільшуємо лічильник пострілів
-      if (playerBullet.y < 0) {
-        app.stage.removeChild(playerBullet);
-        gameState.bullets.splice(j, 1);
-       
+      // Видаляємо кулі, які виходять за межі екрану
+      if (gameState.bullets[j].y < 0) {
         
-        // Перевірка умови програшу, якщо всі кулі вистріляні, а у боса ще залишились HP
+        app.stage.removeChild(gameState.bullets[j]);
+        gameState.bullets.splice(j, 1);
         if (gameState.bulletData.shotsFired >= gameState.maxBullets && gameState.bossHP > 0) {
           endGame(app, "YOU LOSE", "red");
           return;
@@ -49,18 +48,19 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
         continue;
       }
 
-      if (typeof playerBullet.collided === "undefined") {
-        playerBullet.collided = false;
+      if (typeof gameState.bullets[j].collided === "undefined") {
+        gameState.bullets[j].collided = false;
       }
-      if (playerBullet.collided) continue;
+      if (gameState.bullets[j].collided) continue;
 
       let collidedWithBossBullet = false;
+      // 1. Перевірка зіткнення кулі корабля з кулею боса
       for (let i = bossBullets.length - 1; i >= 0; i--) {
-        const bossBullet = bossBullets[i];
-        if (hitTestRectangle(playerBullet, bossBullet)) {
-          app.stage.removeChild(playerBullet);
-          app.stage.removeChild(bossBullet);
-          playerBullet.collided = true;
+        if (hitTestRectangle(gameState.bullets[j], bossBullets[i])) {
+
+          app.stage.removeChild(gameState.bullets[j]);
+          app.stage.removeChild(bossBullets[i]);
+          gameState.bullets[j].collided = true;
           gameState.bullets.splice(j, 1);
           bossBullets.splice(i, 1);
           collidedWithBossBullet = true;
@@ -69,15 +69,18 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
       }
       if (collidedWithBossBullet) continue;
 
-      if (hitTestRectangle(playerBullet, boss)) {
-        playerBullet.collided = true;
-        app.stage.removeChild(playerBullet);
+      // 2. Перевірка зіткнення кулі корабля з босом
+      if (hitTestRectangle(gameState.bullets[j], boss)) {
+    
+        gameState.bullets[j].collided = true;
+        app.stage.removeChild(gameState.bullets[j]);
         gameState.bullets.splice(j, 1);
         gameState.bossHP--;
-
+      
         bossHPBar.text = `Boss HP: ${gameState.bossHP}`;
 
         if (gameState.bossHP === 0) {
+         
           clearInterval(spawnIntervalBossBullets);
           endGame(app, "YOU WIN", "green", true);
           return;
@@ -86,6 +89,7 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
       }
     }
   };
+
   app.ticker.add(bossProcesses);
   gameState.tickerCallbacks.push(() => app.ticker.remove(bossProcesses));
 };
