@@ -1,4 +1,4 @@
-import { hitTestRectangle } from "../processes/hitTestRectangle";
+import { hitTestRectangle } from "../processes/hitTestRectangle.js";
 import { app, gameState } from "../game.js";
 import { endGame } from "../processes/endGame.js";
 
