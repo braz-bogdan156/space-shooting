@@ -12,9 +12,7 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
         bossBullets.push(bullet);
     }, 2000);
 
-    const bossBulletMovementCallback = () => {
-        moveBossBullets(app, bossBullets);
-    };
+   
 
     app.ticker.add(bossBulletMovementCallback);
     gameState.tickerCallbacks.push(() => app.ticker.remove(bossBulletMovementCallback));
