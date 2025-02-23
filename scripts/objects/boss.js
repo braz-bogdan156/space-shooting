@@ -8,9 +8,8 @@ export function createBoss(app) {
     gameState.boss.x = app.screen.width / 2 - gameState.boss.width / 2;
     gameState.boss.y = 50;
 
-
-  
     app.ticker.add(moveBoss);
     gameState.tickerCallbacks.push(() => app.ticker.remove(moveBoss));
+    
     return gameState.boss;
 }
