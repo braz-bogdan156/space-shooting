@@ -3,16 +3,15 @@ import { spawnbossBullet } from "../objects/spawnbossBullet.js";
 import { endGame } from "./endGame.js";
 import { gameState } from "../game.js";
 import { createBossHPBar } from "../objects/createBossHPBar.js";
-import { moveBossBullets } from "./moveBossBullets.js";
+import { bossBulletMovementCallback } from "../tickerCallbacks/bossBulletMovementCallback.js";
 
 export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
     const bossHPBar = createBossHPBar(app);
+    
     const spawnIntervalBossBullets = setInterval(() => {
         const bullet = spawnbossBullet(app, boss);
         bossBullets.push(bullet);
     }, 2000);
-
-   
 
     app.ticker.add(bossBulletMovementCallback);
     gameState.tickerCallbacks.push(() => app.ticker.remove(bossBulletMovementCallback));
