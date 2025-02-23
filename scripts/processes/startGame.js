@@ -46,6 +46,6 @@ export function startGame(app) {
     // Анімація та обробка астероїдів тепер активна
     manageAsteroids(app, spaceship, asteroids,
         (message, color) => endGame(app, message, color));
-        // === Головний цикл гри (оновлюється тільки якщо гра активна) ===
+        
         
 }
