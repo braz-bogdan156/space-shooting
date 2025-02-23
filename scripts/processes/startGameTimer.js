@@ -14,11 +14,11 @@ export const startGameTimer = (app, duration, endGame) => {
         if (timeLeft > 0) {
             timeLeft--;
             timerText.text = `Time: ${timeLeft}`;
-            console.log("Time left:", timeLeft);
+            
         } else {
             clearInterval(timerInterval);
             timerText.text = `Time: 0`;
-            console.log("Timer reached 0, calling endGame with delay...");
+           
             setTimeout(() => {
                 endGame(app, 'YOU LOSE', 'red');
             }, 100);

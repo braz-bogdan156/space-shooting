@@ -5,7 +5,7 @@ import { addNextLevelButton } from './addNextLevelButton.js';
 import { setGamePaused } from './setGamePaused.js';
 
 export const endGame = (app, message, color, isBossLevel = false) => {
-    console.log("endGame called with:", message, color); // ДЛЯ ДЕБАГУ
+   
     const endText = new PIXI.Text(message, {
         fontFamily: "Arial",
         fontSize: 64,
