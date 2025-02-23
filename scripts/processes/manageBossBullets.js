@@ -13,15 +13,15 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
     bossBullets.push(bullet);
   }, 2000);
 
-  const bossProcesses = () => {
-    const bossBulletMovementCallback = () => {
-      moveBossBullets(app, bossBullets);
-    };
-    app.ticker.add(bossBulletMovementCallback);
-    gameState.tickerCallbacks.push(() =>
-      app.ticker.remove(bossBulletMovementCallback)
-    );
+  const bossBulletMovementCallback = () => {
+    moveBossBullets(app, bossBullets);
+  };
+  app.ticker.add(bossBulletMovementCallback);
+  gameState.tickerCallbacks.push(() =>
+    app.ticker.remove(bossBulletMovementCallback)
+  );
 
+  const bossProcesses = () => {
     for (let i = bossBullets.length - 1; i >= 0; i--) {
       if (hitTestRectangle(bossBullets[i], gameState.spaceship)) {
         app.stage.removeChild(bossBullets[i]);
