@@ -3,6 +3,7 @@ import { spawnbossBullet } from "../objects/spawnbossBullet.js";
 import { endGame } from "./endGame.js";
 import { gameState } from "../game.js";
 import { createBossHPBar } from "../objects/createBossHPBar.js";
+import { moveBossBullets } from "./moveBossBullets.js";
 
 export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
   const bossHPBar = createBossHPBar(app);
@@ -14,16 +15,9 @@ export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
   }, 2000);
 
   const bossProcesses = () => {
-    // Рух куль боса
-    for (let i = bossBullets.length - 1; i >= 0; i--) {
-      if (!bossBullets[i]) continue;
-      bossBullets[i].y += 5;
-      if (bossBullets[i].y > app.screen.height) {
-        
-        app.stage.removeChild(bossBullets[i]);
-        bossBullets.splice(i, 1);
-        continue;
-      }
+      moveBossBullets(app, bossBullets);
+
+      for(let i = bossBullets.length - 1; i>=0; i--) {
       if (hitTestRectangle(bossBullets[i], gameState.spaceship)) {
       
         app.stage.removeChild(bossBullets[i]);
