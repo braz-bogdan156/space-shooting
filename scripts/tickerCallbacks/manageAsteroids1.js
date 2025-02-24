@@ -2,10 +2,10 @@ import { hitTestRectangle } from "../processes/hitTestRectangle.js";
 import { app, gameState } from "../game.js";
 import { endGame } from "../processes/endGame.js";
 
-gameState.bulletId = 0;
-gameState.asteroidId = 0;
-
 export const manageAsteroids1 = () => {
+    gameState.bulletId = 0;
+    gameState.asteroidId = 0;
+
     // Оновлення положення куль
     for (let i = gameState.bullets.length - 1; i >= 0; i--) {
         if (!gameState.bullets[i]) continue;
