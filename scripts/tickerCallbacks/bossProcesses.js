@@ -44,7 +44,7 @@ export const bossProcesses = () => {
         }
         if (gameState.bullets[j].collided) continue;
 
-        let collidedWithBossBullet = false;
+        gameState.collidedWithBossBullet = false;
 
         // Перевірка зіткнення кулі корабля з кулею боса
         for (let i = gameState.bossBullets.length - 1; i >= 0; i--) {
@@ -54,12 +54,12 @@ export const bossProcesses = () => {
                 gameState.bullets[j].collided = true;
                 gameState.bullets.splice(j, 1);
                 gameState.bossBullets.splice(i, 1);
-                collidedWithBossBullet = true;
+                gameState.collidedWithBossBullet = true;
                 break;
             }
         }
 
-        if (collidedWithBossBullet) continue;
+        if (gameState.collidedWithBossBullet) continue;
 
         // Перевірка зіткнення кулі корабля з босом
         if (hitTestRectangle(gameState.bullets[j], gameState.boss)) {
