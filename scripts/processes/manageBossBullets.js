@@ -1,11 +1,9 @@
-
+import { bossProcesses } from "../tickerCallbacks/bossProcesses.js";
 import { gameState } from "../game.js";
-import { createBossHPBar } from "../objects/createBossHPBar.js";
 import { bossBulletMovementCallback } from "../tickerCallbacks/bossBulletMovementCallback.js";
 
 export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
-    const bossHPBar = createBossHPBar(app);
-    
+   
   
 
     app.ticker.add(bossBulletMovementCallback);

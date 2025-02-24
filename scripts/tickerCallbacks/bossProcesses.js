@@ -2,8 +2,11 @@ import {spawnIntervalBossBullets} from '../processes/spawnIntervalBossBullets.js
 import {endGame} from '../processes/endGame.js';
 import { hitTestRectangle } from '../processes/hitTestRectangle.js';
 import { gameState, app } from '../game.js';
+import {createBossHPBar} from '../objects/createBossHPBar.js';
 
 export const bossProcesses = () => {
+    const bossHPBar = createBossHPBar(app);
+    
     for (let i = bossBullets.length - 1; i >= 0; i--) {
         if (hitTestRectangle(bossBullets[i], gameState.spaceship)) {
             app.stage.removeChild(bossBullets[i]);
