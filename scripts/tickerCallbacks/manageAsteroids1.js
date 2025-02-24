@@ -33,9 +33,11 @@ export const manageAsteroids1 = () => {
             if (hitTestRectangle(gameState.bullets[j], gameState.asteroids[i])) {
                 app.stage.removeChild(gameState.asteroids[i]);
                 gameState.asteroids.splice(i, 1);
-                }
+
                 app.stage.removeChild(gameState.bullets[j]);
                 gameState.bullets.splice(j, 1);
+                }
+                
         }
        
         
