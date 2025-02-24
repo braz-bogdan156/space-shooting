@@ -37,8 +37,8 @@ export const manageAsteroids1 = () => {
     }
     
     // Створення масиву знищених астероїдів
-    const destroyedAsteroids = new Set();
-    const destroyedBullets = new Set();
+    gameState.destroyedAsteroids = new Set();
+    gameState.destroyedBullets = new Set();
 
     // Обробка колізій: для кожної кулі перевіряємо всі астероїди
     for (const bullet of gameState.bullets) {
