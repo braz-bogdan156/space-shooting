@@ -1,6 +1,4 @@
-import { hitTestRectangle } from "./hitTestRectangle.js";
-import { spawnbossBullet } from "../objects/spawnbossBullet.js";
-import { endGame } from "./endGame.js";
+
 import { gameState } from "../game.js";
 import { createBossHPBar } from "../objects/createBossHPBar.js";
 import { bossBulletMovementCallback } from "../tickerCallbacks/bossBulletMovementCallback.js";

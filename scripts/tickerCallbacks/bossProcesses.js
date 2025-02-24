@@ -1,3 +1,8 @@
+import {spawnIntervalBossBullets} from '../processes/spawnIntervalBossBullets.js';
+import {endGame} from '../processes/endGame.js';
+import { hitTestRectangle } from '../processes/hitTestRectangle.js';
+import { gameState, app } from '../game.js';
+
 export const bossProcesses = () => {
     for (let i = bossBullets.length - 1; i >= 0; i--) {
         if (hitTestRectangle(bossBullets[i], gameState.spaceship)) {
