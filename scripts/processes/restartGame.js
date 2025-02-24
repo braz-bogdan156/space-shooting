@@ -4,6 +4,8 @@ import {gameState} from '../game.js';
 import {handleKeyUp} from './handleKeyUp.js';
 import {handleKeyDown} from './handleKeyDown.js';
 import { clearTickers } from './clearTickers.js';
+import { spawnbossBullet } from '../objects/spawnbossBullet.js';
+import { createBoss } from '../objects/boss.js';
  
 export const restartGame = (app) => {
     
@@ -30,6 +32,8 @@ export const restartGame = (app) => {
     gameState.bossHPBar = null,
     clearTickers();
 
+   
+
     // Видаляємо старі обробники клавіш перед їх повторним додаванням
     window.removeEventListener("keydown", handleKeyDown);
     window.removeEventListener("keyup", handleKeyUp);
@@ -38,5 +42,5 @@ export const restartGame = (app) => {
     setTimeout(() => {
         app.ticker.start(); // Запускаємо анімацію знову
         startGame(app);
-    }, 100);
+       }, 100);
 };
