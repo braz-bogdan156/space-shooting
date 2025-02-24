@@ -2,6 +2,9 @@ import { hitTestRectangle } from "../processes/hitTestRectangle.js";
 import { app, gameState } from "../game.js";
 import { endGame } from "../processes/endGame.js";
 
+let bulletId = 0;
+let asteroidId = 0;
+
 export const manageAsteroids1 = () => {
     // Оновлення положення куль
     for (let i = gameState.bullets.length - 1; i >= 0; i--) {
@@ -35,22 +38,31 @@ export const manageAsteroids1 = () => {
     
     // Створення масиву знищених астероїдів
     const destroyedAsteroids = new Set();
+    const destroyedBullets = new Set();
 
     // Обробка колізій: для кожної кулі перевіряємо всі астероїди
     for (const bullet of gameState.bullets) {
         if (!bullet) continue;
+
+        bullet.id = bullet.id || bulletId++;
         
         for (const asteroid of gameState.asteroids) {
             if (!asteroid) continue;
 
-            if (hitTestRectangle(bullet, asteroid) && !destroyedAsteroids.has(asteroid)) {
+            asteroid.id = asteroid.id || asteroidId++;
+
+            if (
+                hitTestRectangle(bullet, asteroid) &&
+                !destroyedAsteroids.has(asteroid.id) &&
+                !destroyedBullets.has(bullet.id)
+            ) {
                 // Видаляємо астероїд, який зіткнувся з кулею
                 app.stage.removeChild(asteroid);
-                destroyedAsteroids.add(asteroid);
+                destroyedAsteroids.add(asteroid.id);
                 
                 // Видаляємо кулю, яка спричинила колізію
                 app.stage.removeChild(bullet);
-                gameState.bullets.splice(gameState.bullets.indexOf(bullet), 1);
+                destroyedBullets.add(bullet.id);
                 
                 // Завершуємо цикл для цієї кулі, щоб вона знищила лише один астероїд
                 break;
@@ -59,7 +71,8 @@ export const manageAsteroids1 = () => {
     }
     
     // Видалення знищених астероїдів з масиву
-    gameState.asteroids = gameState.asteroids.filter(asteroid => !destroyedAsteroids.has(asteroid));
+    gameState.asteroids = gameState.asteroids.filter(asteroid => !destroyedAsteroids.has(asteroid.id));
+    gameState.bullets = gameState.bullets.filter(bullet => !destroyedBullets.has(bullet.id));
     
     // Умова програшу: якщо всі снаряди витрачено, але астероїди залишились
     if (
