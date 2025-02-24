@@ -34,19 +34,23 @@ export const manageAsteroids1 = () => {
     }
     
     // Обробка колізій: для кожної кулі перевіряємо всі астероїди
-    // Кожна куля знищує рівно один астероїд, навіть якщо астероїди знаходяться в одній точці
+    // При першій колізії видаляється один астероїд та відповідна куля
     for (let j = gameState.bullets.length - 1; j >= 0; j--) {
         if (!gameState.bullets[j]) continue;
-        // Для кожної кулі знаходимо перший астероїд, з яким вона стикається
+        
         for (let i = gameState.asteroids.length - 1; i >= 0; i--) {
             if (!gameState.asteroids[i]) continue;
+            
             if (hitTestRectangle(gameState.bullets[j], gameState.asteroids[i])) {
-                // Видаляємо астероїд
+                // Видаляємо астероїд, який зіткнувся з кулею
                 app.stage.removeChild(gameState.asteroids[i]);
                 gameState.asteroids.splice(i, 1);
-                // Видаляємо кулю та припиняємо подальшу перевірку для неї
+                
+                // Видаляємо кулю, яка спричинила колізію
                 app.stage.removeChild(gameState.bullets[j]);
                 gameState.bullets.splice(j, 1);
+                
+                // Завершуємо цикл для цієї кулі, щоб вона знищила лише один астероїд
                 break;
             }
         }
