@@ -1,17 +1,28 @@
-import {spawnIntervalBossBullets} from '../processes/spawnIntervalBossBullets.js';
-import {endGame} from '../processes/endGame.js';
+import { spawnIntervalBossBullets } from '../processes/spawnIntervalBossBullets.js';
+import { endGame } from '../processes/endGame.js';
 import { hitTestRectangle } from '../processes/hitTestRectangle.js';
 import { gameState, app } from '../game.js';
-import {createBossHPBar} from '../objects/createBossHPBar.js';
+import { createBossHPBar } from '../objects/createBossHPBar.js';
+
+let spawnInterval;
 
 export const bossProcesses = () => {
     const bossHPBar = createBossHPBar(app);
     
+    if (!gameState.boss) {
+        console.error("Boss object is null");
+        return;
+    }
+
+    if (!spawnInterval) {
+        spawnInterval = spawnIntervalBossBullets();
+    }
+
     for (let i = gameState.bossBullets.length - 1; i >= 0; i--) {
         if (hitTestRectangle(gameState.bossBullets[i], gameState.spaceship)) {
             app.stage.removeChild(gameState.bossBullets[i]);
             endGame(app, "YOU LOSE", "red");
-            clearInterval(spawnIntervalBossBullets); // Додано цей рядок для очищення інтервалу
+            clearInterval(spawnInterval);
             return;
         }
     }
@@ -25,7 +36,7 @@ export const bossProcesses = () => {
             gameState.bullets.splice(j, 1);
             if (gameState.bulletData.shotsFired >= gameState.maxBullets && gameState.bossHP > 0) {
                 endGame(app, "YOU LOSE", "red");
-                clearInterval(spawnIntervalBossBullets); // Додано цей рядок для очищення інтервалу
+                clearInterval(spawnInterval);
                 return;
             }
             continue;
@@ -61,7 +72,7 @@ export const bossProcesses = () => {
             gameState.bossHP--;
             bossHPBar.text = `Boss HP: ${gameState.bossHP}`;
             if (gameState.bossHP === 0) {
-                clearInterval(spawnIntervalBossBullets); // Додано цей рядок для очищення інтервалу
+                clearInterval(spawnInterval);
                 endGame(app, "YOU WIN", "green", true);
                 return;
             }

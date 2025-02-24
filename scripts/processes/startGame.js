@@ -9,6 +9,7 @@ import { gameState, background} from '../game.js';
 import {handleKeyDown} from './handleKeyDown.js';
 import {handleKeyUp} from './handleKeyUp.js';
 import {createBulletCounter} from '../objects/createBulletCounter.js';
+import { clearTickers } from './clearTickers.js';
 
 // === ЛОГІКА ГРИ (Оновлюється лише після натискання кнопки) ===
 export function startGame(app) {
@@ -18,6 +19,8 @@ export function startGame(app) {
     if (!getGamePaused()) return; // Якщо гра вже йде, нічого не робити
 
     setGamePaused(false); // Знімаємо паузу
+
+    clearTickers();
     
 
     // Додаємо фон заново
