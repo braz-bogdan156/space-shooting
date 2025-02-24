@@ -7,7 +7,7 @@ import { createBossHPBar } from '../objects/createBossHPBar.js';
 let spawnInterval;
 
 export const bossProcesses = () => {
-    const bossHPBar = createBossHPBar(app);
+     createBossHPBar(app);
     
     if (!gameState.boss) {
         console.error("Boss object is null");

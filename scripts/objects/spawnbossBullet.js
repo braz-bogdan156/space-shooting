@@ -4,10 +4,7 @@ import { createBoss } from "./boss.js";
 export const spawnbossBullet = () => {
   gameState.boss = createBoss(app);
   
-    if (!gameState.boss) {
-        console.error("Boss object is null");
-        return null;
-    }
+ 
 
     const bossBullet = new PIXI.Graphics();
     bossBullet.beginFill(0xff0000);
