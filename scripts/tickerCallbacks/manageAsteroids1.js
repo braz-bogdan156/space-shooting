@@ -27,37 +27,32 @@ export const manageAsteroids1 = () => {
         }
         
         // Перевірка колізії астероїда з кораблем
-        if (gameState.asteroids[i] && hitTestRectangle(gameState.asteroids[i], gameState.spaceship)) {
+        if (hitTestRectangle(gameState.asteroids[i], gameState.spaceship)) {
             endGame(app, "YOU LOSE", "red");
             return;
         }
     }
     
     // Обробка колізій: для кожної кулі перевіряємо всі астероїди
+    // Кожна куля знищує рівно один астероїд, навіть якщо астероїди знаходяться в одній точці
     for (let j = gameState.bullets.length - 1; j >= 0; j--) {
         if (!gameState.bullets[j]) continue;
-        let bulletHit = false;
-    
-        // Для кожної кулі перевіряємо усі астероїди
+        // Для кожної кулі знаходимо перший астероїд, з яким вона стикається
         for (let i = gameState.asteroids.length - 1; i >= 0; i--) {
             if (!gameState.asteroids[i]) continue;
             if (hitTestRectangle(gameState.bullets[j], gameState.asteroids[i])) {
                 // Видаляємо астероїд
                 app.stage.removeChild(gameState.asteroids[i]);
                 gameState.asteroids.splice(i, 1);
-                bulletHit = true;
-                // Продовжуємо перевірку, щоб знищити всі астероїди, з якими зіткнулася ця куля
+                // Видаляємо кулю та припиняємо подальшу перевірку для неї
+                app.stage.removeChild(gameState.bullets[j]);
+                gameState.bullets.splice(j, 1);
+                break;
             }
-        }
-    
-        // Якщо була колізія хоча з одним астероїдом - видаляємо кулю
-        if (bulletHit) {
-            app.stage.removeChild(gameState.bullets[j]);
-            gameState.bullets.splice(j, 1);
         }
     }
     
-    // Умова програшу, якщо всі снаряди витрачено, але астероїди залишились
+    // Умова програшу: якщо всі снаряди витрачено, але астероїди залишились
     if (
         gameState.bulletData.shotsFired >= gameState.maxBullets &&
         gameState.bullets.length === 0 &&
@@ -67,7 +62,7 @@ export const manageAsteroids1 = () => {
         return;
     }
     
-    // Умова перемоги, якщо всі астероїди знищено
+    // Умова перемоги: якщо всі астероїди знищено
     if (
         gameState.asteroids.length === 0 &&
         gameState.asteroidData.spawnedAsteroids >= gameState.totalAsteroids
