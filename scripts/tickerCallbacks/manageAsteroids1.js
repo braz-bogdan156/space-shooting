@@ -32,12 +32,11 @@ export const manageAsteroids1 = () => {
             if (!gameState.bullets[j]) continue;
             if (hitTestRectangle(gameState.bullets[j], gameState.asteroids[i])) {
                 app.stage.removeChild(gameState.asteroids[i]);
-                app.stage.removeChild(gameState.bullets[j]);
                 gameState.asteroids.splice(i, 1);
-                gameState.bullets.splice(j, 1);
-                
-            }
+                }
         }
+        app.stage.removeChild(gameState.bullets[j]);
+        gameState.bullets.splice(j, 1);
         
         // Перевірка колізії астероїда з кораблем
         if (gameState.asteroids[i] && hitTestRectangle(gameState.asteroids[i], gameState.spaceship)) {
