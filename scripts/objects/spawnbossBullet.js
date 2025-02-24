@@ -17,5 +17,7 @@ export const spawnbossBullet = () => {
     bossBullet.y = gameState.boss.y + gameState.boss.height;
     app.stage.addChild(bossBullet);
 
+    
+
     return bossBullet;
 };
