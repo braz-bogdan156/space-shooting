@@ -27,6 +27,7 @@ export const restartGame = (app) => {
     gameState.boss = null;
     gameState.bossBullets = [];
     gameState.bossHP = 4;
+    gameState.bossHPBar = null,
     clearTickers();
 
     // Видаляємо старі обробники клавіш перед їх повторним додаванням
