@@ -44,8 +44,7 @@ export function continueGame(app) {
 
     gameState.timerInterval = timerId;
 
-    
-   manageBossBullets(app, spaceship, boss, gameState.bossBullets);
+    manageBossBullets(app, spaceship, boss, gameState.bossBullets);
     
    
 }

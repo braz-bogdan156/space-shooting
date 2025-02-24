@@ -4,22 +4,22 @@ import { hitTestRectangle } from '../processes/hitTestRectangle.js';
 import { gameState, app } from '../game.js';
 import { createBossHPBar } from '../objects/createBossHPBar.js';
 
-let spawnInterval;
+
 
 export const bossProcesses = () => {
      createBossHPBar(app);
     
     
 
-    if (!spawnInterval) {
-        spawnInterval = spawnIntervalBossBullets();
+    if (!gameState.spawnBossInterval) {
+        gameState.spawnBossInterval = spawnIntervalBossBullets();
     }
 
     for (let i = gameState.bossBullets.length - 1; i >= 0; i--) {
         if (hitTestRectangle(gameState.bossBullets[i], gameState.spaceship)) {
             app.stage.removeChild(gameState.bossBullets[i]);
             endGame(app, "YOU LOSE", "red");
-            clearInterval(spawnInterval);
+            clearInterval(gameState.spawnBossInterval);
             return;
         }
     }
@@ -33,7 +33,7 @@ export const bossProcesses = () => {
             gameState.bullets.splice(j, 1);
             if (gameState.bulletData.shotsFired >= gameState.maxBullets && gameState.bossHP > 0) {
                 endGame(app, "YOU LOSE", "red");
-                clearInterval(spawnInterval);
+                clearInterval(gameState.spawnBossInterval);
                 return;
             }
             continue;
@@ -70,7 +70,7 @@ export const bossProcesses = () => {
            
             gameState.bossHPBar.text = `Boss HP: ${gameState.bossHP}`;
             if (gameState.bossHP === 0) {
-                clearInterval(spawnInterval);
+                clearInterval(gameState.spawnBossInterval);
                 endGame(app, "YOU WIN", "green", true);
                 return;
             }
