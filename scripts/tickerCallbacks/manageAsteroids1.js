@@ -33,28 +33,33 @@ export const manageAsteroids1 = () => {
         }
     }
     
+    // Створення масиву знищених астероїдів
+    const destroyedAsteroids = new Set();
+
     // Обробка колізій: для кожної кулі перевіряємо всі астероїди
-    // При першій колізії видаляється один астероїд та відповідна куля
-    for (let j = gameState.bullets.length - 1; j >= 0; j--) {
-        if (!gameState.bullets[j]) continue;
+    for (const bullet of gameState.bullets) {
+        if (!bullet) continue;
         
-        for (let i = gameState.asteroids.length - 1; i >= 0; i--) {
-            if (!gameState.asteroids[i]) continue;
-            
-            if (hitTestRectangle(gameState.bullets[j], gameState.asteroids[i])) {
+        for (const asteroid of gameState.asteroids) {
+            if (!asteroid) continue;
+
+            if (hitTestRectangle(bullet, asteroid) && !destroyedAsteroids.has(asteroid)) {
                 // Видаляємо астероїд, який зіткнувся з кулею
-                app.stage.removeChild(gameState.asteroids[i]);
-                gameState.asteroids.splice(i, 1);
+                app.stage.removeChild(asteroid);
+                destroyedAsteroids.add(asteroid);
                 
                 // Видаляємо кулю, яка спричинила колізію
-                app.stage.removeChild(gameState.bullets[j]);
-                gameState.bullets.splice(j, 1);
+                app.stage.removeChild(bullet);
+                gameState.bullets.splice(gameState.bullets.indexOf(bullet), 1);
                 
                 // Завершуємо цикл для цієї кулі, щоб вона знищила лише один астероїд
                 break;
             }
         }
     }
+    
+    // Видалення знищених астероїдів з масиву
+    gameState.asteroids = gameState.asteroids.filter(asteroid => !destroyedAsteroids.has(asteroid));
     
     // Умова програшу: якщо всі снаряди витрачено, але астероїди залишились
     if (
