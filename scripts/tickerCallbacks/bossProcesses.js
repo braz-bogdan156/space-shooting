@@ -9,10 +9,7 @@ let spawnInterval;
 export const bossProcesses = () => {
      createBossHPBar(app);
     
-    if (!gameState.boss) {
-        console.error("Boss object is null");
-        return;
-    }
+    
 
     if (!spawnInterval) {
         spawnInterval = spawnIntervalBossBullets();
