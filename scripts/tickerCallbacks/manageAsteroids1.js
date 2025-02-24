@@ -36,6 +36,7 @@ export const manageAsteroids1 = () => {
 
                 app.stage.removeChild(gameState.bullets[j]);
                 gameState.bullets.splice(j, 1);
+                break;
                 }
                 
         }
