@@ -70,7 +70,8 @@ export const bossProcesses = () => {
             app.stage.removeChild(gameState.bullets[j]);
             gameState.bullets.splice(j, 1);
             gameState.bossHP--;
-            bossHPBar.text = `Boss HP: ${gameState.bossHP}`;
+           
+            gameState.bossHPBar.text = `Boss HP: ${gameState.bossHP}`;
             if (gameState.bossHP === 0) {
                 clearInterval(spawnInterval);
                 endGame(app, "YOU WIN", "green", true);
