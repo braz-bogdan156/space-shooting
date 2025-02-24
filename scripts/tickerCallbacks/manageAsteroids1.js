@@ -2,8 +2,8 @@ import { hitTestRectangle } from "../processes/hitTestRectangle.js";
 import { app, gameState } from "../game.js";
 import { endGame } from "../processes/endGame.js";
 
-let bulletId = 0;
-let asteroidId = 0;
+gameState.bulletId = 0;
+gameState.asteroidId = 0;
 
 export const manageAsteroids1 = () => {
     // Оновлення положення куль
@@ -44,12 +44,12 @@ export const manageAsteroids1 = () => {
     for (const bullet of gameState.bullets) {
         if (!bullet) continue;
 
-        bullet.id = bullet.id || bulletId++;
+        bullet.id = bullet.id || gameState.bulletId++;
         
         for (const asteroid of gameState.asteroids) {
             if (!asteroid) continue;
 
-            asteroid.id = asteroid.id || asteroidId++;
+            asteroid.id = asteroid.id || gameState.asteroidId++;
 
             if (
                 hitTestRectangle(bullet, asteroid) &&
