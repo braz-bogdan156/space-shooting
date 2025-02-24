@@ -28,6 +28,8 @@ asteroidData : { spawnedAsteroids: 0 },
  totalAsteroids : 10,
  asteroids: [],
  currentSpeed: 0.2, 
+ destroyedAsteroids : new Set(),
+ destroyedBullets: new Set(),
    bulletData : { shotsFired : 0 },
   maxBullets : 10, // Встановлюємо максимальну кількість куль
    keys : {},
