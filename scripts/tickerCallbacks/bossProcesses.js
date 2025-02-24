@@ -7,9 +7,9 @@ import {createBossHPBar} from '../objects/createBossHPBar.js';
 export const bossProcesses = () => {
     const bossHPBar = createBossHPBar(app);
     
-    for (let i = bossBullets.length - 1; i >= 0; i--) {
-        if (hitTestRectangle(bossBullets[i], gameState.spaceship)) {
-            app.stage.removeChild(bossBullets[i]);
+    for (let i = gameState.bossBullets.length - 1; i >= 0; i--) {
+        if (hitTestRectangle(gameState.bossBullets[i], gameState.spaceship)) {
+            app.stage.removeChild(gameState.bossBullets[i]);
             endGame(app, "YOU LOSE", "red");
             clearInterval(spawnIntervalBossBullets); // Додано цей рядок для очищення інтервалу
             return;
@@ -39,13 +39,13 @@ export const bossProcesses = () => {
         let collidedWithBossBullet = false;
 
         // Перевірка зіткнення кулі корабля з кулею боса
-        for (let i = bossBullets.length - 1; i >= 0; i--) {
-            if (hitTestRectangle(gameState.bullets[j], bossBullets[i])) {
+        for (let i = gameState.bossBullets.length - 1; i >= 0; i--) {
+            if (hitTestRectangle(gameState.bullets[j], gameState.bossBullets[i])) {
                 app.stage.removeChild(gameState.bullets[j]);
-                app.stage.removeChild(bossBullets[i]);
+                app.stage.removeChild(gameState.bossBullets[i]);
                 gameState.bullets[j].collided = true;
                 gameState.bullets.splice(j, 1);
-                bossBullets.splice(i, 1);
+                gameState.bossBullets.splice(i, 1);
                 collidedWithBossBullet = true;
                 break;
             }
@@ -54,7 +54,7 @@ export const bossProcesses = () => {
         if (collidedWithBossBullet) continue;
 
         // Перевірка зіткнення кулі корабля з босом
-        if (hitTestRectangle(gameState.bullets[j], boss)) {
+        if (hitTestRectangle(gameState.bullets[j], gameState.boss)) {
             gameState.bullets[j].collided = true;
             app.stage.removeChild(gameState.bullets[j]);
             gameState.bullets.splice(j, 1);

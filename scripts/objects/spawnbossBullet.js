@@ -1,13 +1,16 @@
-
+import { gameState, app } from "../game.js";
+import { createBoss } from "./boss.js";
 
 // Функція для створення однієї пулі боса
-export const spawnbossBullet = (app, boss) => {
+export const spawnbossBullet = () => {
+  gameState.boss = createBoss(app);
+  
   const bossBullet = new PIXI.Graphics();
   bossBullet.beginFill(0xff0000);
   bossBullet.drawCircle(0, 0, 10);
   bossBullet.endFill();
-  bossBullet.x = boss.x + boss.width / 2;
-  bossBullet.y = boss.y + boss.height;
+  bossBullet.x = gameState.boss.x + gameState.boss.width / 2;
+  bossBullet.y = gameState.boss.y + gameState.boss.height;
   app.stage.addChild(bossBullet);
 
   return bossBullet;
