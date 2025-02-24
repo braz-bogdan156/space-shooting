@@ -40,6 +40,7 @@ asteroidData : { spawnedAsteroids: 0 },
     bossBullets : [],
      bossHP : 4,
      bossHPBar : null,
+     spawnBossInterval : null,
    tickerCallbacks: [],
    timerInterval: null 
  }

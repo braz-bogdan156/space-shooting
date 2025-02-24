@@ -4,8 +4,7 @@ import {gameState} from '../game.js';
 import {handleKeyUp} from './handleKeyUp.js';
 import {handleKeyDown} from './handleKeyDown.js';
 import { clearTickers } from './clearTickers.js';
-import { spawnbossBullet } from '../objects/spawnbossBullet.js';
-import { createBoss } from '../objects/boss.js';
+import { spawnIntervalBossBullets } from './spawnIntervalBossBullets.js';
  
 export const restartGame = (app) => {
     
@@ -17,6 +16,11 @@ export const restartGame = (app) => {
   if (gameState.timerInterval) {
     clearInterval(gameState.timerInterval);
     gameState.timerInterval = null;
+  }
+
+  if (gameState.spawnBossInterval) {
+    clearInterval(gameState.spawnBossInterval);
+    gameState.spawnBossInterval = null;
   }
 
     // Очищення стану гри
@@ -32,7 +36,7 @@ export const restartGame = (app) => {
     gameState.bossHPBar = null,
     clearTickers();
 
-   
+    gameState.spawnBossInterval = spawnIntervalBossBullets();
 
     // Видаляємо старі обробники клавіш перед їх повторним додаванням
     window.removeEventListener("keydown", handleKeyDown);
