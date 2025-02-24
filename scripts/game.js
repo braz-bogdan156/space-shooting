@@ -1,8 +1,6 @@
 import { createStartButton } from './objects/startButton.js';
 import {startGame} from './processes/startGame.js';
 
-
-
 export const app = new PIXI.Application({
     width: 1280,
     height: 720,
@@ -46,11 +44,6 @@ asteroidData : { spawnedAsteroids: 0 },
    tickerCallbacks: [],
    timerInterval: null 
  }
-
-
-
-
-
 
 // Кнопка старту гри
  const startButton = createStartButton(app, startGame);
