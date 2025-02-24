@@ -2,19 +2,18 @@ import { hitTestRectangle } from "../processes/hitTestRectangle.js";
 import { app, gameState } from "../game.js";
 import { endGame } from "../processes/endGame.js";
 
-
 export const manageAsteroids1 = () => {
-        
+    // Оновлення положення куль
     for (let i = gameState.bullets.length - 1; i >= 0; i--) {
-        
-        if (! gameState.bullets[i]) continue;
+        if (!gameState.bullets[i]) continue;
         gameState.bullets[i].y -= 3; // Рух пуль вгору
-        if ( gameState.bullets[i].y < 0) {
-            app.stage.removeChild( gameState.bullets[i]);
+        if (gameState.bullets[i].y < 0) {
+            app.stage.removeChild(gameState.bullets[i]);
             gameState.bullets.splice(i, 1);
         }
     }
-    // Оновлення астероїдів
+    
+    // Оновлення положення астероїдів
     for (let i = gameState.asteroids.length - 1; i >= 0; i--) {
         if (!gameState.asteroids[i]) continue;
         gameState.asteroids[i].y += 1; // Рух астероїда вниз
@@ -27,21 +26,6 @@ export const manageAsteroids1 = () => {
             return;
         }
         
-        // Перевірка колізій астероїда з пулями корабля
-        for (let j = gameState.bullets.length - 1; j >= 0; j--) {
-            if (!gameState.bullets[j]) continue;
-            if (hitTestRectangle(gameState.bullets[j], gameState.asteroids[i])) {
-                app.stage.removeChild(gameState.asteroids[i]);
-                gameState.asteroids.splice(i, 1);
-
-                app.stage.removeChild(gameState.bullets[j]);
-                gameState.bullets.splice(j, 1);
-                break;
-                }
-                
-        }
-       
-        
         // Перевірка колізії астероїда з кораблем
         if (gameState.asteroids[i] && hitTestRectangle(gameState.asteroids[i], gameState.spaceship)) {
             endGame(app, "YOU LOSE", "red");
@@ -49,17 +33,45 @@ export const manageAsteroids1 = () => {
         }
     }
     
+    // Обробка колізій: для кожної кулі перевіряємо всі астероїди
+    for (let j = gameState.bullets.length - 1; j >= 0; j--) {
+        if (!gameState.bullets[j]) continue;
+        let bulletHit = false;
+    
+        // Для кожної кулі перевіряємо усі астероїди
+        for (let i = gameState.asteroids.length - 1; i >= 0; i--) {
+            if (!gameState.asteroids[i]) continue;
+            if (hitTestRectangle(gameState.bullets[j], gameState.asteroids[i])) {
+                // Видаляємо астероїд
+                app.stage.removeChild(gameState.asteroids[i]);
+                gameState.asteroids.splice(i, 1);
+                bulletHit = true;
+                // Продовжуємо перевірку, щоб знищити всі астероїди, з якими зіткнулася ця куля
+            }
+        }
+    
+        // Якщо була колізія хоча з одним астероїдом - видаляємо кулю
+        if (bulletHit) {
+            app.stage.removeChild(gameState.bullets[j]);
+            gameState.bullets.splice(j, 1);
+        }
+    }
+    
     // Умова програшу, якщо всі снаряди витрачено, але астероїди залишились
-    if (gameState.bulletData.shotsFired >= gameState.maxBullets &&
+    if (
+        gameState.bulletData.shotsFired >= gameState.maxBullets &&
         gameState.bullets.length === 0 &&
-        gameState.asteroids.length > 0) {
+        gameState.asteroids.length > 0
+    ) {
         endGame(app, "YOU LOSE", "red");
         return;
     }
     
     // Умова перемоги, якщо всі астероїди знищено
-    if (gameState.asteroids.length === 0 &&
-        gameState.asteroidData.spawnedAsteroids >= gameState.totalAsteroids) {
+    if (
+        gameState.asteroids.length === 0 &&
+        gameState.asteroidData.spawnedAsteroids >= gameState.totalAsteroids
+    ) {
         endGame(app, "YOU WIN", "green", false);
         return;
     }
