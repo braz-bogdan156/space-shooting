@@ -8,10 +8,7 @@ import { bossBulletMovementCallback } from "../tickerCallbacks/bossBulletMovemen
 export const manageBossBullets = (app, spaceship, boss, bossBullets) => {
     const bossHPBar = createBossHPBar(app);
     
-    const spawnIntervalBossBullets = setInterval(() => {
-        const bullet = spawnbossBullet(app, boss);
-        bossBullets.push(bullet);
-    }, 2000);
+  
 
     app.ticker.add(bossBulletMovementCallback);
     gameState.tickerCallbacks.push(() => app.ticker.remove(bossBulletMovementCallback));
