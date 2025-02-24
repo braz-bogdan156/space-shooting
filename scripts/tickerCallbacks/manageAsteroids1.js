@@ -53,12 +53,12 @@ export const manageAsteroids1 = () => {
 
             if (
                 hitTestRectangle(bullet, asteroid) &&
-                !destroyedAsteroids.has(asteroid.id) &&
+                !gameState.destroyedAsteroids.has(asteroid.id) &&
                 !destroyedBullets.has(bullet.id)
             ) {
                 // Видаляємо астероїд, який зіткнувся з кулею
                 app.stage.removeChild(asteroid);
-                destroyedAsteroids.add(asteroid.id);
+                gameState.destroyedAsteroids.add(asteroid.id);
                 
                 // Видаляємо кулю, яка спричинила колізію
                 app.stage.removeChild(bullet);
@@ -71,7 +71,7 @@ export const manageAsteroids1 = () => {
     }
     
     // Видалення знищених астероїдів з масиву
-    gameState.asteroids = gameState.asteroids.filter(asteroid => !destroyedAsteroids.has(asteroid.id));
+    gameState.asteroids = gameState.asteroids.filter(asteroid => !gameState.destroyedAsteroids.has(asteroid.id));
     gameState.bullets = gameState.bullets.filter(bullet => !destroyedBullets.has(bullet.id));
     
     // Умова програшу: якщо всі снаряди витрачено, але астероїди залишились
