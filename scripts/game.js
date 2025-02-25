@@ -30,6 +30,7 @@ asteroidData : { spawnedAsteroids: 0 },
  asteroidId: 0,
  destroyedAsteroids : new Set(),
  destroyedBullets: new Set(),
+ spawnAsteroidsInterval: null,
    bulletData : { shotsFired : 0 },
   maxBullets : 10, // Встановлюємо максимальну кількість куль
    keys : {},
@@ -51,3 +52,5 @@ asteroidData : { spawnedAsteroids: 0 },
 // Кнопка старту гри
  const startButton = createStartButton(app, startGame);
 app.stage.addChild(startButton);
+
+

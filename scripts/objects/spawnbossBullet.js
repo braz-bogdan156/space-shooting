@@ -2,6 +2,10 @@ import { gameState, app } from "../game.js";
 
 // Функція для створення однієї пулі боса
 export const spawnbossBullet = () => {
+
+  if (!gameState.boss) {
+    return null; // Якщо бос не існує, нічого не робимо
+  }
  
   const bossBullet = new PIXI.Graphics();
     bossBullet.beginFill(0xff0000);

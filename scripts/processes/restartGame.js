@@ -23,6 +23,11 @@ export const restartGame = (app) => {
     gameState.spawnBossInterval = null;
   }
 
+  if (gameState.spawnAsteroidsInterval) {
+    clearInterval(gameState.spawnAsteroidsInterval);
+    gameState.spawnAsteroidsInterval = null;
+  }
+
     // Очищення стану гри
     gameState.asteroids = [];
     gameState.bullets = [];

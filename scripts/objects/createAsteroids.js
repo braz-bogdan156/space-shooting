@@ -8,7 +8,7 @@ export function createAsteroids(app, totalAsteroids, spawnRate, asteroidData) {
 
 
   // Інтервал для групового спауну
-  const spawnInterval = setInterval(() => {
+  gameState.spawnAsteroidsInterval = setInterval(() => {
     spawnAsteroidsGroup(app, totalAsteroids, asteroidData);
 
     // Збільшуємо швидкість після кожного виклику
@@ -16,7 +16,7 @@ export function createAsteroids(app, totalAsteroids, spawnRate, asteroidData) {
 
     // Якщо створено достатньо астероїдів, зупиняємо інтервал
     if (asteroidData.spawnedAsteroids >= totalAsteroids) {
-      clearInterval(spawnInterval);
+      clearInterval(gameState.spawnAsteroidsInterval);
     }
   }, spawnRate);
 
