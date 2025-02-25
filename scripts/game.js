@@ -51,5 +51,3 @@ asteroidData : { spawnedAsteroids: 0 },
 // Кнопка старту гри
  const startButton = createStartButton(app, startGame);
 app.stage.addChild(startButton);
-
-
