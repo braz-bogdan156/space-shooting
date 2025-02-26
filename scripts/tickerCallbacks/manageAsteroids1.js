@@ -1,25 +1,19 @@
 import { hitTestRectangle } from "../processes/hitTestRectangle.js";
 import { app, gameState } from "../game.js";
 import { endGame } from "../processes/endGame.js";
+import { moveSpaceshipBullets } from "./moveSpaceshipBullets.js";
+import { moveAsteroids } from "./moveAsteroids.js";
 
 export const manageAsteroids1 = () => {
     gameState.bulletId = 0;
     gameState.asteroidId = 0;
 
-    // Оновлення положення куль
-    for (let i = gameState.bullets.length - 1; i >= 0; i--) {
-        if (!gameState.bullets[i]) continue;
-        gameState.bullets[i].y -= 3; // Рух пуль вгору
-        if (gameState.bullets[i].y < 0) {
-            app.stage.removeChild(gameState.bullets[i]);
-            gameState.bullets.splice(i, 1);
-        }
-    }
+    moveSpaceshipBullets();
     
     // Оновлення положення астероїдів
     for (let i = gameState.asteroids.length - 1; i >= 0; i--) {
         if (!gameState.asteroids[i]) continue;
-        gameState.asteroids[i].y += 1; // Рух астероїда вниз
+        moveAsteroids();
         
         // Якщо астероїд виходить за межі екрану
         if (gameState.asteroids[i].y > app.screen.height) {
@@ -93,3 +87,4 @@ export const manageAsteroids1 = () => {
         return;
     }
 };
+
