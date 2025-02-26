@@ -10,6 +10,9 @@ export const spawnSingleAsteroid = (app) => {
     // Рандомне положення по горизонталі
     asteroid.x = Math.random() * (app.screen.width - asteroid.width);
     asteroid.y = -asteroid.height; // Початкова позиція (за межами екрану)
+
+    asteroid.id = gameState.asteroidId++; // Присвоюємо унікальний ID
+
     app.stage.addChild(asteroid);
 
     gameState.asteroids.push(asteroid);
