@@ -3,7 +3,7 @@ export const moveBossBullets = (app, bossBullets) => {
      // Рух куль боса
         for (let i = bossBullets.length - 1; i >= 0; i--) {
           if (!bossBullets[i]) continue;
-          bossBullets[i].y += 5;
+          bossBullets[i].y += 7;
           if (bossBullets[i].y > app.screen.height) {
             
             app.stage.removeChild(bossBullets[i]);

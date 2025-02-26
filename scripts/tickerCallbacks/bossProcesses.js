@@ -3,13 +3,14 @@ import { endGame } from '../processes/endGame.js';
 import { hitTestRectangle } from '../processes/hitTestRectangle.js';
 import { gameState, app } from '../game.js';
 import { createBossHPBar } from '../objects/createBossHPBar.js';
+import { moveSpaceshipBullets } from './moveSpaceshipBullets.js';
 
 
 
 export const bossProcesses = () => {
      createBossHPBar(app);
     
-    
+    moveSpaceshipBullets();
 
     if (!gameState.spawnBossInterval) {
         gameState.spawnBossInterval = spawnIntervalBossBullets();
@@ -27,6 +28,8 @@ export const bossProcesses = () => {
     // Рух і перевірка колізій куль корабля
     for (let j = gameState.bullets.length - 1; j >= 0; j--) {
         if (!gameState.bullets[j]) continue;
+
+      
 
         if (gameState.bullets[j].y < 0) {
             app.stage.removeChild(gameState.bullets[j]);
