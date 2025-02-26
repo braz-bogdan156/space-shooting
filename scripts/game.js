@@ -38,6 +38,9 @@ asteroidData : { spawnedAsteroids: 0 },
     shooting : false
 },
  canShoot : true,
+ spaceshipSpeed : 10,
+ spaceshipAcceleration : 0.2, // Початкове прискорення космічного корабля
+ maxSpaceshipSpeed : 18, // Максимальна швидкість космічного корабля
  bulletCounterText : null ,
     boss: null,
     bossBullets : [],
