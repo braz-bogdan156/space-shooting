@@ -36,7 +36,7 @@ export const manageAsteroids1 = () => {
         }
     }
     
-    // Створення масиву знищених астероїдів
+
     gameState.destroyedAsteroids = new Set();
     gameState.destroyedBullets = new Set();
 
