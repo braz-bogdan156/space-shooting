@@ -12,7 +12,7 @@ export function createAsteroids(app, totalAsteroids, spawnRate, asteroidData) {
     spawnAsteroidsGroup(app, totalAsteroids, asteroidData);
 
     // Збільшуємо швидкість після кожного виклику
-    gameState.currentSpeed += 0.2;
+    gameState.currentSpeed += 0.1;
 
     // Якщо створено достатньо астероїдів, зупиняємо інтервал
     if (asteroidData.spawnedAsteroids >= totalAsteroids) {
