@@ -23,7 +23,7 @@ app.stage.addChild(background);
 isGamePaused : true,
 // Параметри астероїдів
 asteroidData : { spawnedAsteroids: 0 },
- totalAsteroids : 10,
+ totalAsteroids : 1,
  asteroids: [],
  currentSpeed: 0.8, 
  destroyedAsteroids : new Set(),
@@ -47,11 +47,10 @@ asteroidData : { spawnedAsteroids: 0 },
      spawnBossInterval : null,
      collidedWithBossBullet: false,
    tickerCallbacks: [],
-   timerInterval: null 
+   timerInterval: null,
+   bossShouldMove: true, 
  }
 
 // Кнопка старту гри
  const startButton = createStartButton(app, startGame);
 app.stage.addChild(startButton);
-
-

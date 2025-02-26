@@ -10,6 +10,10 @@ export function createBoss(app) {
 
     app.ticker.add(moveBoss);
     gameState.tickerCallbacks.push(() => app.ticker.remove(moveBoss));
+
+    setInterval (() => {
+        gameState.bossShouldMove = !gameState.bossShouldMove;
+    }, 1500)
     
     return gameState.boss;
 }
