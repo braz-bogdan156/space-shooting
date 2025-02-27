@@ -5,7 +5,6 @@ import { gameState, app } from "../game.js";
 import { createBossHPBar } from "../objects/createBossHPBar.js";
 import { moveSpaceshipBullets } from "./moveSpaceshipBullets.js";
 
-
 export const bossProcesses = () => {
   createBossHPBar(app);
 
@@ -25,7 +24,6 @@ export const bossProcesses = () => {
     }
   }
 
- 
   for (let i = gameState.randomBossBullets.length - 1; i >= 0; i--) {
     if (hitTestRectangle(gameState.randomBossBullets[i], gameState.spaceship)) {
       app.stage.removeChild(gameState.randomBossBullets[i]);
@@ -38,17 +36,15 @@ export const bossProcesses = () => {
   // Рух і перевірка колізій куль корабля
   for (let j = gameState.bullets.length - 1; j >= 0; j--) {
     if (!gameState.bullets[j]) continue;
-   
+
     if (
-        gameState.bulletData.shotsFired >= gameState.maxBullets &&
-        gameState.bossHP > 0
-      ) {
-        endGame(app, "YOU LOSE", "red");
-        clearInterval(gameState.spawnBossInterval);
-        return;
-      }
-     
-    
+      gameState.bulletData.shotsFired >= gameState.maxBullets &&
+      gameState.bossHP > 0
+    ) {
+      endGame(app, "YOU LOSE", "red");
+      clearInterval(gameState.spawnBossInterval);
+      return;
+    }
 
     if (typeof gameState.bullets[j].collided === "undefined") {
       gameState.bullets[j].collided = false;
@@ -74,7 +70,9 @@ export const bossProcesses = () => {
 
     // Перевірка зіткнення кулі корабля з рандомною кулею боса
     for (let i = gameState.randomBossBullets.length - 1; i >= 0; i--) {
-      if (hitTestRectangle(gameState.bullets[j], gameState.randomBossBullets[i])) {
+      if (
+        hitTestRectangle(gameState.bullets[j], gameState.randomBossBullets[i])
+      ) {
         app.stage.removeChild(gameState.bullets[j]);
         app.stage.removeChild(gameState.randomBossBullets[i]);
         gameState.bullets[j].collided = true;
