@@ -14,9 +14,20 @@ export const bossProcesses = () => {
     gameState.spawnBossInterval = spawnIntervalBossBullets();
   }
 
+  // Перевірка зіткнення звичайних куль боса з кораблем гравця
   for (let i = gameState.bossBullets.length - 1; i >= 0; i--) {
     if (hitTestRectangle(gameState.bossBullets[i], gameState.spaceship)) {
       app.stage.removeChild(gameState.bossBullets[i]);
+      endGame(app, "YOU LOSE", "red");
+      clearInterval(gameState.spawnBossInterval);
+      return;
+    }
+  }
+
+  // Перевірка зіткнення рандомних куль боса з кораблем гравця
+  for (let i = gameState.randomBossBullets.length - 1; i >= 0; i--) {
+    if (hitTestRectangle(gameState.randomBossBullets[i], gameState.spaceship)) {
+      app.stage.removeChild(gameState.randomBossBullets[i]);
       endGame(app, "YOU LOSE", "red");
       clearInterval(gameState.spawnBossInterval);
       return;
@@ -56,6 +67,21 @@ export const bossProcesses = () => {
         gameState.bullets[j].collided = true;
         gameState.bullets.splice(j, 1);
         gameState.bossBullets.splice(i, 1);
+        gameState.collidedWithBossBullet = true;
+        break;
+      }
+    }
+
+    if (gameState.collidedWithBossBullet) continue;
+
+    // Перевірка зіткнення кулі корабля з рандомною кулею боса
+    for (let i = gameState.randomBossBullets.length - 1; i >= 0; i--) {
+      if (hitTestRectangle(gameState.bullets[j], gameState.randomBossBullets[i])) {
+        app.stage.removeChild(gameState.bullets[j]);
+        app.stage.removeChild(gameState.randomBossBullets[i]);
+        gameState.bullets[j].collided = true;
+        gameState.bullets.splice(j, 1);
+        gameState.randomBossBullets.splice(i, 1);
         gameState.collidedWithBossBullet = true;
         break;
       }
