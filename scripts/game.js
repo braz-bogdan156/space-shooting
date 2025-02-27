@@ -47,6 +47,7 @@ export const gameState = {
   collidedWithBossBullet: false,
   tickerCallbacks: [],
   timerInterval: null,
+  timerFinished: false,
   bossShouldMove: true,
   randomBossBullets: [],
   alternate: true,

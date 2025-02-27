@@ -32,12 +32,11 @@ export function continueGame(app) {
   window.addEventListener("keydown", handleKeyDown);
   window.addEventListener("keyup", handleKeyUp);
 
-  // Запуск таймера гри
-  const timerId = startGameTimer(app, 60, (message, color) => {
-    endGame(app, message, color);
-  });
+ //  Перед стартом гри скидаємо таймер
+ gameState.timerFinished = false;
 
-  gameState.timerInterval = timerId;
+ const timerId = startGameTimer(app, 60); 
+ gameState.timerInterval = timerId;
 
   manageBossBullets(app, spaceship, boss, gameState.bossBullets);
 }

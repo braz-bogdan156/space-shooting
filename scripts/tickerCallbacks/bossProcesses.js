@@ -101,4 +101,8 @@ export const bossProcesses = () => {
       continue;
     }
   }
+  if (gameState.timerFinished) {
+    endGame(app, "YOU LOSE", "red");
+    return;
+  }
 };

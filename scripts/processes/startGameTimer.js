@@ -1,6 +1,6 @@
 import { gameState } from "../game.js";
 
-export const startGameTimer = (app, duration, endGame) => {
+export const startGameTimer = (app, duration) => {
   let timeLeft = duration;
 
   const timerText = new PIXI.Text(`Time: ${timeLeft}`, {
@@ -16,6 +16,8 @@ export const startGameTimer = (app, duration, endGame) => {
     clearInterval(gameState.timerInterval);
   }
 
+  gameState.timerFinished = false;
+
   const timerInterval = setInterval(() => {
     if (timeLeft > 0) {
       timeLeft--;
@@ -24,11 +26,11 @@ export const startGameTimer = (app, duration, endGame) => {
       clearInterval(timerInterval);
       timerText.text = `Time: 0`;
 
-      setTimeout(() => {
-        endGame(app, "YOU LOSE", "red");
-      }, 100);
+      // ❗ Позначаємо, що час закінчився, але не викликаємо endGame тут
+      gameState.timerFinished = true;
     }
   }, 1000);
+
   gameState.timerInterval = timerInterval;
   return timerInterval;
 };

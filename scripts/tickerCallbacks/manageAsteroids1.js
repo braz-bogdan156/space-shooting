@@ -82,4 +82,8 @@ export const manageAsteroids1 = () => {
     endGame(app, "YOU WIN", "green", false);
     return;
   }
+  if (gameState.timerFinished) {
+    endGame(app, "YOU LOSE", "red");
+    return;
+  }
 };
