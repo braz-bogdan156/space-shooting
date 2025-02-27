@@ -14,6 +14,8 @@ export function shootShip() {
 
             updateBulletCounter();
 
+           
+
             gameState.canShoot = false;
             setTimeout(() => {
                 gameState.canShoot = true;
