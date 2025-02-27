@@ -49,6 +49,8 @@ asteroidData : { spawnedAsteroids: 0 },
    tickerCallbacks: [],
    timerInterval: null,
    bossShouldMove: true, 
+   randomBossBullets : [],
+   alternate: true,
  }
 
 // Кнопка старту гри
