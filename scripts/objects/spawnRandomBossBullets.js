@@ -3,7 +3,7 @@ import { gameState, app } from "../game.js";
 
 // Функція для створення кулі, яка летить рандомно в усі сторони
 export const spawnRandomBossBullets = () => {
-  const numBullets = Math.floor(Math.random() * 6) + 15; // Рандомне число від 15 до 20
+  const numBullets = Math.floor(Math.random() * 6) + 10; // Рандомне число від 10 до 15
   for (let i = 0; i < numBullets; i++) {
     const randomBossBullet = spawnbossBullet();
     if (randomBossBullet) {
