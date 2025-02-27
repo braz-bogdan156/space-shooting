@@ -1,10 +1,10 @@
-import { setGamePaused } from './setGamePaused.js';
-import { startGame } from './startGame.js';
-import { gameState } from '../game.js';
-import { handleKeyUp } from './handleKeyUp.js';
-import { handleKeyDown } from './handleKeyDown.js';
-import { clearTickers } from './clearTickers.js';
-import { spawnIntervalBossBullets } from './spawnIntervalBossBullets.js';
+import { setGamePaused } from "./setGamePaused.js";
+import { startGame } from "./startGame.js";
+import { gameState } from "../game.js";
+import { handleKeyUp } from "./handleKeyUp.js";
+import { handleKeyDown } from "./handleKeyDown.js";
+import { clearTickers } from "./clearTickers.js";
+import { spawnIntervalBossBullets } from "./spawnIntervalBossBullets.js";
 
 export const restartGame = (app) => {
   app.stage.removeChildren(); // Видаляємо всі об'єкти зі сцени
