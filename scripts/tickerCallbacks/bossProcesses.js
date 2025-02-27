@@ -25,28 +25,22 @@ export const bossProcesses = () => {
     }
   }
 
-  // Перевірка зіткнення рандомних куль боса з кораблем гравця
-  // for (let i = gameState.randomBossBullets.length - 1; i >= 0; i--) {
-  //   if (hitTestRectangle(gameState.randomBossBullets[i], gameState.spaceship)) {
-  //     app.stage.removeChild(gameState.randomBossBullets[i]);
-  //     endGame(app, "YOU LOSE", "red");
-  //     clearInterval(gameState.spawnBossInterval);
-  //     return;
-  //   }
-  // }
+ 
+  for (let i = gameState.randomBossBullets.length - 1; i >= 0; i--) {
+    if (hitTestRectangle(gameState.randomBossBullets[i], gameState.spaceship)) {
+      app.stage.removeChild(gameState.randomBossBullets[i]);
+      endGame(app, "YOU LOSE", "red");
+      clearInterval(gameState.spawnBossInterval);
+      return;
+    }
+  }
 
   // Рух і перевірка колізій куль корабля
   for (let j = gameState.bullets.length - 1; j >= 0; j--) {
     if (!gameState.bullets[j]) continue;
-    // Видаляємо кулі, які вийшли за межі екрану
-    
-    console.log('maxbullets:', gameState.maxBullets);
-    console.log("Shots fired:", gameState.bulletData.shotsFired);
-    console.log("Bullets left:", gameState.bullets.length);
-    console.log("Boss HP:", gameState.bossHP);
+   
     if (
         gameState.bulletData.shotsFired >= gameState.maxBullets &&
-        gameState.bullets.length === 0 &&
         gameState.bossHP > 0
       ) {
         endGame(app, "YOU LOSE", "red");
