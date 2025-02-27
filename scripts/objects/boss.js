@@ -13,7 +13,7 @@ export function createBoss(app) {
 
     setInterval (() => {
         gameState.bossShouldMove = !gameState.bossShouldMove;
-    }, 1000)
+    },1000)
     
     return gameState.boss;
 }
