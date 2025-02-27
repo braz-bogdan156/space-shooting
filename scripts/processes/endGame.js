@@ -1,41 +1,39 @@
-
-import { createStartButton } from '../objects/startButton.js';
-import { restartGame } from './restartGame.js';
-import { addNextLevelButton } from './addNextLevelButton.js';
-import { setGamePaused } from './setGamePaused.js';
+import { createStartButton } from "../objects/startButton.js";
+import { restartGame } from "./restartGame.js";
+import { addNextLevelButton } from "./addNextLevelButton.js";
+import { setGamePaused } from "./setGamePaused.js";
 
 export const endGame = (app, message, color, isBossLevel = false) => {
-   
-    const endText = new PIXI.Text(message, {
-        fontFamily: "Arial",
-        fontSize: 64,
-        fill: color,
-        align: "center",
-    });
+  const endText = new PIXI.Text(message, {
+    fontFamily: "Arial",
+    fontSize: 64,
+    fill: color,
+    align: "center",
+  });
 
-    endText.x = app.screen.width / 2 - endText.width / 2;
-    endText.y = app.screen.height / 2 - endText.height / 2 - 100;
+  endText.x = app.screen.width / 2 - endText.width / 2;
+  endText.y = app.screen.height / 2 - endText.height / 2 - 100;
 
-    app.stage.addChild(endText);
+  app.stage.addChild(endText);
 
-    app.ticker.stop(); // Зупиняємо оновлення гри
-    setGamePaused(true); // Встановлюємо стан паузи
+  app.ticker.stop(); // Зупиняємо оновлення гри
+  setGamePaused(true); // Встановлюємо стан паузи
 
-    if (message === "YOU WIN") {
-        if (isBossLevel) {
-            const restartButton = createStartButton(app);
-            app.stage.addChild(restartButton);
-            restartButton.on('pointerdown', () => {
-                restartGame(app); // Перезапуск гри
-            });
-        } else {
-            addNextLevelButton(app, endText, false);
-        }
-    } else if (message === "YOU LOSE") {
-        const restartButton1 = createStartButton(app);
-        app.stage.addChild(restartButton1);
-        restartButton1.on('pointerdown', () => {
-            restartGame(app); // Перезапуск гри
-        });
+  if (message === "YOU WIN") {
+    if (isBossLevel) {
+      const restartButton = createStartButton(app);
+      app.stage.addChild(restartButton);
+      restartButton.on("pointerdown", () => {
+        restartGame(app); // Перезапуск гри
+      });
+    } else {
+      addNextLevelButton(app, endText, false);
     }
+  } else if (message === "YOU LOSE") {
+    const restartButton1 = createStartButton(app);
+    app.stage.addChild(restartButton1);
+    restartButton1.on("pointerdown", () => {
+      restartGame(app); // Перезапуск гри
+    });
+  }
 };

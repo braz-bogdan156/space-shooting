@@ -26,8 +26,6 @@ export function addNextLevelButton(app, endText) {
 
   // Обробник натискання
   nextLevelButton.on("pointerdown", () => {
-   
-
     app.stage.removeChildren();
 
     app.ticker.start(); // Перезапускаємо оновлення сцени

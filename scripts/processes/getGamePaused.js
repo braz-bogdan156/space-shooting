@@ -1,5 +1,5 @@
-import {gameState} from '../game.js';
+import { gameState } from "../game.js";
 
 export const getGamePaused = () => {
-    return gameState.isGamePaused;
-}
+  return gameState.isGamePaused;
+};
