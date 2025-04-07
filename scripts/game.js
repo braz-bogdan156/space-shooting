@@ -15,6 +15,7 @@ export const background = new PIXI.Sprite(backgroundTexture);
 background.width = app.screen.width;
 background.height = app.screen.height;
 app.stage.addChild(background);
+app.ticker.maxFPS = 60; 
 
 export const gameState = {
   spaceship: null,
